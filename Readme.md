@@ -20,7 +20,7 @@
 
 ### Doctrine
 
-- Supprimer le package empêchant la mise à jour de la base -> `composer remove symfony/ux-turbo`
+- Supprimer le package empêchant la mise à jour de la base &#8680; `composer remove symfony/ux-turbo`
 - Màj fichier [.env](https://github.com/gizaoui/Symfony/blob/main/html/simple-project/.env) (`DATABASE_URL="postgresql://postgres:postgres@mypostgres:5432/mydb?serverVersion=15&charset=utf8"`)
 	- `cd /usr/share/nginx/html/simple-project && rm -f .env && wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/.env`
 
