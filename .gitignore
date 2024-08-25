@@ -9,6 +9,7 @@ compose.override.yaml
 compose.yaml
 composer.json
 compose.lock
+composer.lock
 importmap.php
 phpunit.xml.dist
 symfony.lock
