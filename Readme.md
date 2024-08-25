@@ -6,7 +6,7 @@
 - Connexion au conteneur *nginx* (`cd /usr/share/nginx/html`) : `docker exec -it mynginx /bin/bash`
 - Connexion au conteneur *php_fpm* (`cd /usr/share/nginx/html`) : `docker exec -it myphp_fpm /bin/bash`
 - Test des fichiers de configuration : `nginx -t`
-- Mettre à jour les droits (en test) : `sudo chmod -R 777 simple-app && chown -R gizaoui: simple-app/`
+- Mettre à jour les droits (en test) : `sudo chmod -R 777 simple-project && chown -R gizaoui: simple-project`
 
 ## Symfony
 
@@ -121,6 +121,8 @@ php bin/console make:form RecipeType
 # Controller (peut-être innutile ?)
 php bin/console make:controller HomeController
 php bin/console make:controller RecipeController
+
+# /!\ Vider le cache (alias Linux touche 'c')
 
 # =========  MACHINE HÔTE  =========
 
