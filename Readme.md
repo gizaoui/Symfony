@@ -129,15 +129,17 @@ php bin/console make:controller RecipeController
 # Supprimer le système de fichier de la base de donnnées
 sudo rm -fr /home/gizaoui/git/github/Symfony/data
 
+# /!\ Supprimer l'ancienne image Docker et redémarrer le 'container'
+
 # Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
 cd /home/gizaoui/git/github/Symfony/html/simple-project
 git fetch --prune origin
 git reset --hard
 git clean -f -d
 
-# /!\ Vider le cache (alias Linux touche 'c')
-
 # =========  CONTAINER  =========
+
+# /!\ Vider le cache (alias Linux touche 'c')
 
 # Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
 php bin/console make:migration
