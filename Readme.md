@@ -110,13 +110,13 @@ cd simple-project && composer require webapp # (saisir 'yes')
 # Suppression du package empêchant la mise à jour de la base
 composer remove symfony/ux-turbo
 
-# Entity (peut-être innutile !)
+# Entity (peut-être innutile ?)
 php bin/console make:entity Recipe
 
-# Form (saisir l'entité 'Recipe'. Peut-être innutile !)
+# Form (saisir l'entité 'Recipe'. Peut-être innutile ?)
 php bin/console make:form RecipeType
 
-# Controller (peut-être innutile !)
+# Controller (peut-être innutile ?)
 php bin/console make:controller HomeController
 php bin/console make:controller RecipeController
 
