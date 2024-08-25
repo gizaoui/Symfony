@@ -26,7 +26,7 @@
 
 #### Model
 
-Création de l'entité (*Recipe*) & du *repository* (RecipeRepository) -> `php bin/console make:entity Recipe`
+Création de l'entité (*Recipe*) & du *repository* (RecipeRepository) &#8680; `php bin/console make:entity Recipe`
 
 ```bash
 # Repository
@@ -47,7 +47,7 @@ php bin/console doctrine:migration:migrate
 
 ### Formulaire
 
-- Création d'un formulaire basé sur l'entité *Recipe* -> `php bin/console make:form RecipeType # (saisir l'entité 'Recipe')`
+- Création d'un formulaire basé sur l'entité *Recipe* &#8680; `php bin/console make:form RecipeType # (saisir l'entité 'Recipe')`
 
 ```bash
 cd /usr/share/nginx/html/simple-project/src/Form && rm -f RecipeType.php && \
@@ -65,7 +65,7 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 
 #### Controller *Home*
 
-Création du controlleur -> `php bin/console make:controller HomeController`
+Création du controlleur &#8680; `php bin/console make:controller HomeController`
 
 ```bash
 # Controller
@@ -81,7 +81,7 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 
 #### Controller *Recipe*
 
-Création du controlleur &rarr; `php bin/console make:controller RecipeController`
+Création du controlleur &#8680; `php bin/console make:controller RecipeController`
 
 ```bash
 # Controller
