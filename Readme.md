@@ -135,6 +135,8 @@ git fetch --prune origin
 git reset --hard
 git clean -f -d
 
+# /!\ Vider le cache (alias Linux touche 'c')
+
 # =========  CONTAINER  =========
 
 # Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
@@ -142,6 +144,8 @@ php bin/console make:migration
 
 # Création de la base de données (saisir 'yes')
 php bin/console doctrine:migration:migrate
+
+# /!\ Vider le cache (alias Linux touche 'c')
 ```
 
 <br><hr>
