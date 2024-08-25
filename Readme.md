@@ -40,7 +40,7 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 # Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
 php bin/console make:migration
 
-# Création de la base de données
+# Création de la base de données (saisir 'yes')
 php bin/console doctrine:migration:migrate
 ```
 
@@ -94,6 +94,16 @@ wget https://github.com/gizaoui/Symfony/blob/main/html/simple-project/templates/
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/templates/recipe/create.html.twig && \
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/templates/recipe/edit.html.twig && \
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/templates/recipe/show.html.twig
+```
+
+### Git
+
+Synchronisation du dossier local */usr/share/nginx/html/simple-project* avec dépôt *git* :
+
+```bash
+ git reset --hard origin/master
+ git reset --hard 
+ git clean -f -d
 ```
 
 <br><hr><br>
