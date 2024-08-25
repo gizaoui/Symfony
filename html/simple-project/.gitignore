@@ -3,6 +3,7 @@ data/
 var/
 vendor/
 bin/
+migrations/
 .env.test
 .buildpath
 compose.override.yaml
