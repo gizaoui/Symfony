@@ -96,14 +96,39 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/templates/recipe/show.html.twig
 ```
 
-### Git
+### Synchronisation du dossier local avec dépôt *git*
 
-Synchronisation du dossier local */usr/share/nginx/html/simple-project* avec dépôt *git* :
+La récupération du projet peut-être facilité par la synchronisation du dossier local */usr/share/nginx/html/simple-project* avec dépôt *git* :
 
 ```bash
- git reset --hard origin/master
- git reset --hard 
- git clean -f -d
+# Création du projet 'simple-project'
+composer create-project symfony/skeleton:"7.1.*" simple-project
+cd simple-project && composer require webapp # (saisir 'yes')
+composer remove symfony/ux-turbo
+
+# Entity (peut-être innutile !)
+php bin/console make:entity Recipe
+
+# Form (saisir l'entité 'Recipe'. Peut-être innutile !)
+php bin/console make:form RecipeType
+
+# Controller (peut-être innutile !)
+php bin/console make:controller HomeController
+php bin/console make:controller RecipeController
+
+# Recupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
+git reset --hard origin/master
+git reset --hard
+git clean -f -d
+
+# Supprimer le système de fichier de la base de donnnées
+sudo cd /home/gizaoui/git/github/Symfony && rm -fr data/
+
+# Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
+php bin/console make:migration
+
+# Création de la base de données (saisir 'yes')
+php bin/console doctrine:migration:migrate
 ```
 
 <br><hr><br>
