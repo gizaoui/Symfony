@@ -131,7 +131,7 @@ sudo rm -fr /home/gizaoui/git/github/Symfony/data
 
 # Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
 cd /home/gizaoui/git/github/Symfony/html/simple-project
-git reset --hard origin/master
+git fetch --prune origin
 git reset --hard
 git clean -f -d
 
