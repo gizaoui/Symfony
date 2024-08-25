@@ -129,7 +129,7 @@ php bin/console make:controller RecipeController
 # Supprimer le système de fichier de la base de donnnées
 sudo rm -fr /home/gizaoui/git/github/Symfony/data
 
-# /!\ Supprimer l'ancienne image Docker et redémarrer le 'container'
+# /!\ Recrer la base de données Postgres -> Supprimer l'ancienne image Docker et redémarrer le 'container'
 
 # Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
 cd /home/gizaoui/git/github/Symfony/html/simple-project
