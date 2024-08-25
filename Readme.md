@@ -103,16 +103,6 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 La récupération du projet peut-être facilité par la synchronisation du dossier local */usr/share/nginx/html/simple-project* avec dépôt *git* :
 
 ```bash
-# =========  MACHINE HÔTE  =========
-
-# /!\ Machine hôte -> Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
-git reset --hard origin/master
-git reset --hard
-git clean -f -d
-
-# /!\ Machine hôte en root -> Dupprimer le système de fichier de la base de donnnées
-sudo cd /home/gizaoui/git/github/Symfony && rm -fr data/
-
 # =========  CONTAINER  =========
 
 # Création du projet 'simple-project'
@@ -131,6 +121,18 @@ php bin/console make:form RecipeType
 # Controller (peut-être innutile ?)
 php bin/console make:controller HomeController
 php bin/console make:controller RecipeController
+
+# =========  MACHINE HÔTE  =========
+
+# /!\ Machine hôte -> Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
+git reset --hard origin/master
+git reset --hard
+git clean -f -d
+
+# /!\ Machine hôte en root -> Dupprimer le système de fichier de la base de donnnées
+sudo cd /home/gizaoui/git/github/Symfony && rm -fr data/
+
+# =========  CONTAINER  =========
 
 # Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
 php bin/console make:migration
