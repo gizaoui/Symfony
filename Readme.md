@@ -81,7 +81,7 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 
 #### Controller *Recipe*
 
-Création du controlleur -> `php bin/console make:controller RecipeController`
+Création du controlleur &rarr; `php bin/console make:controller RecipeController`
 
 ```bash
 # Controller
@@ -103,9 +103,9 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 Mettre à jour le fichier *phppgadmin/conf/config.inc.php* :
 
 ```php
-	$conf['servers'][0]['host'] = 'mypostgres';
-	$conf['servers'][0]['port'] = 5432;
-	$conf['extra_login_security'] = false;
+$conf['servers'][0]['host'] = 'mypostgres';
+$conf['servers'][0]['port'] = 5432;
+$conf['extra_login_security'] = false;
 ```
 
 ---
