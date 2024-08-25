@@ -1,0 +1,75 @@
+# drm && docker-compose up
+
+
+version: '2.27.0'
+services:
+
+
+  ##########################################
+  #                 PHP
+  ##########################################
+  php-fpm:
+    build:
+      context: .
+    ## Mettre à jour le fichier 'default.conf'
+    # -> fastcgi_pass myphp_fpm:9000;
+    container_name: myphp_fpm
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - common_network
+
+
+  ##########################################
+  #                POSTGRES
+  ##########################################
+  postgres:
+    image: postgres:15.8-bookworm
+    ## Mettre à jour le fichier 'phppgadmin/conf/config.inc.php'
+    # -> $conf['servers'][0]['host'] = 'mypostgres';
+    ## Mettre à jour le fichier 'resources/application.properties'
+    # spring.datasource.url=jdbc:postgresql://mypostgres:5432/mydb
+    container_name: mypostgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
+      PGDATA: /var/lib/postgresql/data
+
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+    networks:
+      - common_network
+    
+    ## Accès de l'exterieur du 'container'
+    # apt update && apt-get install -y postgresql-client
+    # PGPASSWORD='postgres' psql -h mypostgres -U postgres -d mydb
+    ports:
+      - "5432:5432"
+    # shm_size: 128mb
+
+
+  ##########################################
+  #                 NGINX
+  ##########################################
+  nginx:
+    image: nginx:latest
+    container_name: mynginx
+    depends_on :
+      - php-fpm
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - common_network
+    ports:
+      - '8000:80'
+
+
+networks:
+  common_network:
+    name: common_network
+    driver: bridge
+
