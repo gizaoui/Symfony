@@ -126,13 +126,13 @@ php bin/console make:controller RecipeController
 
 # =========  MACHINE HÔTE  =========
 
-# /!\ Machine hôte -> Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
+# Supprimer le système de fichier de la base de donnnées
+sudo rm -fr /home/gizaoui/git/github/Symfony/data
+
+# Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
 git reset --hard origin/master
 git reset --hard
 git clean -f -d
-
-# /!\ Machine hôte en root -> Dupprimer le système de fichier de la base de donnnées
-sudo cd /home/gizaoui/git/github/Symfony && rm -fr data/
 
 # =========  CONTAINER  =========
 
