@@ -4,6 +4,7 @@ var/
 vendor/
 bin/
 migrations/
+assets/
 .env.test
 .buildpath
 compose.override.yaml
