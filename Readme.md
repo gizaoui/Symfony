@@ -36,7 +36,11 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 # Entity
 cd /usr/share/nginx/html/simple-project/src/Entity && rm -f Recipe.php && \
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/src/Entity/Recipe.php
+
+# création du fichier 'migrations/Version[Date][Id].php'
+php bin/console make:migration
 ```
+
 
 ### Formulaire
 
