@@ -37,8 +37,11 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 cd /usr/share/nginx/html/simple-project/src/Entity && rm -f Recipe.php && \
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/src/Entity/Recipe.php
 
-# création du fichier 'migrations/Version[Date][Id].php'
+# Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
 php bin/console make:migration
+
+# Création de la base de données
+php bin/console doctrine:migration:migrate
 ```
 
 
