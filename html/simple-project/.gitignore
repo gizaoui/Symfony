@@ -3,6 +3,7 @@ data/
 var/
 vendor/
 bin/
+.env.test
 .buildpath
 compose.override.yaml
 compose.yaml
