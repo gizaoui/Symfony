@@ -96,6 +96,8 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/templates/recipe/show.html.twig
 ```
 
+<br><br>
+
 ### Synchronisation du dossier local avec dépôt *git*
 
 La récupération du projet peut-être facilité par la synchronisation du dossier local */usr/share/nginx/html/simple-project* avec dépôt *git* :
