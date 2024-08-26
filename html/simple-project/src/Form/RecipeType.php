@@ -12,6 +12,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\Sequentially;
 
 class RecipeType extends AbstractType
 {
@@ -21,6 +24,14 @@ class RecipeType extends AbstractType
      * - Suppression de l'affichage dans les formulaires :
      *    -> add ( 'createdAt', DateTimeType::class )
      *    -> add ( 'updateAt', DateTimeType::class )
+     * - La validation des formulaire peut-être placé au niveau de ce fichier 
+     *    ->add('slug', TextType::class, [
+     *               'label' => 'Path', 
+     *               'constraints' => new Sequentially( [
+     *                  new Length(min: 5),
+     *                  new Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/')
+     *               ])
+     *       ])
      * */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
