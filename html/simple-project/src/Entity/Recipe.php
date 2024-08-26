@@ -6,9 +6,12 @@ use App\Repository\RecipeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
+#[UniqueEntity('title')]
+#[UniqueEntity('slug')]
 class Recipe
 {
     #[ORM\Id]
@@ -36,8 +39,8 @@ class Recipe
     private ?\DateTimeImmutable $updateAt = null;
 
     #[ORM\Column(nullable: true)]
-    #[Assert\NotBlank()]
     #[Assert\Positive()]
+    #[Assert\LessThan(value: 1440)]
     private ?int $duration = null;
 
     public function getId(): ?int
