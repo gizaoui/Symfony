@@ -22,12 +22,12 @@ class Recipe
 
     #[ORM\Column(length: 100)]
     #[Assert\Length(min :5)]
-    #[BanWord()]
+    #[BanWord(groups: ['Extra'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min :5)]
-    #[Assert\Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'Invalid slug')]
+    #[Assert\Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', 'Invalid slug', groups: ['Extra'])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]

@@ -12,12 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\Regex;
-use Symfony\Component\Validator\Constraints\Sequentially;
 
-class RecipeType extends AbstractType
-{
+class RecipeType extends AbstractType {
     
     /**
      * - /!\ le TextType dans 'Symfony\Component\Form\Extension\Core\Type\TextType' (php bin/console debug:form)
@@ -60,8 +56,14 @@ class RecipeType extends AbstractType
         }
     }
     
+    # @formatter:off
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Recipe::class]);
+        $resolver->setDefaults([
+           'data_class' => Recipe::class,
+           # Les groupes permettent le désactivation des règles de validation
+           'validation_groups' => ['Default', 'Extra']
+        ]);
     }
+    # @formatter:ono
 }
