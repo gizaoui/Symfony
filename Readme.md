@@ -122,6 +122,10 @@ php bin/console make:form RecipeType
 php bin/console make:controller HomeController
 php bin/console make:controller RecipeController
 
+# Validator (peut-être innutile ?)
+php bin/console make:validator # (Saisir BanWordValidator)
+
+
 # /!\ Vider le cache (alias Linux touche 'c')
 
 # =========  MACHINE HÔTE  =========
