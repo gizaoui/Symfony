@@ -29,6 +29,7 @@ services:
     # -> $conf['servers'][0]['host'] = 'mypostgres';
     ## Mettre à jour le fichier 'resources/application.properties'
     # spring.datasource.url=jdbc:postgresql://mypostgres:5432/mydb
+    # PGPASSWORD='postgres' psql -h mypostgres -U postgres -d mydb
     container_name: mypostgres
     environment:
       POSTGRES_USER: postgres
@@ -68,6 +69,18 @@ services:
       - '8000:80'
 
 
+  ##########################################
+  #        VIRTUAL MAIL SERVER
+  ##########################################
+  mailpit:
+    image: axllent/mailpit
+    container_name: mymailpit
+    networks:
+      - common_network
+    ports:
+      - '1025:1025' # smtp://localhost:1025
+      - '8025:8025' # http://localhost:8025
+      
 networks:
   common_network:
     name: common_network

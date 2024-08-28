@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class RecipeController extends AbstractController
-{
+class RecipeController extends AbstractController {
     
     // http://localhost:8000/recette
     // /!\ La path ne doit pas contenir 'recipe'
