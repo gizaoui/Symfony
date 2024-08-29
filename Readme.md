@@ -129,6 +129,10 @@ php bin/console make:entity Recipe
 # Form Recipe
 php bin/console make:form RecipeType Recipe
 
+# Entity Category
+php bin/console make:entity Category
+php bin/console make:form CategoryType Category
+
 # Email
 mkdir /usr/share/nginx/html/simple-project/src/DTO
 touch /usr/share/nginx/html/simple-project/src/DTO/ContactDTO.php
@@ -140,6 +144,7 @@ php bin/console make:form ContactType \\App\\DTO\\ContactDTO
 php bin/console make:controller HomeController
 php bin/console make:controller Admin\\RecipeController
 php bin/console make:controller ContactController
+
 
 # /!\ Vider le cache (alias Linux touche 'c')
 
