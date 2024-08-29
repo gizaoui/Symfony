@@ -112,6 +112,9 @@ cd simple-project && composer require webapp # (saisir 'yes')
 # Suppression du package empêchant la mise à jour de la base
 composer remove symfony/ux-turbo
 
+# Saisir BanWordValidator
+php bin/console make:validator
+
 # Entity (peut-être innutile ?)
 php bin/console make:entity Recipe
 
