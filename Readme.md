@@ -24,6 +24,13 @@
 - Màj fichier [.env](https://github.com/gizaoui/Symfony/blob/main/html/simple-project/.env) (`DATABASE_URL="postgresql://postgres:postgres@mypostgres:5432/mydb?serverVersion=15&charset=utf8"`)
 	- `cd /usr/share/nginx/html/simple-project && rm -f .env && wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/.env`
 
+#### Validator
+
+```bash
+php bin/console make:validator BanWordValidator
+```
+
+
 #### Model
 
 Création de l'entité (*Recipe*) & du *repository* (RecipeRepository) &#8680; `php bin/console make:entity Recipe`
@@ -112,8 +119,8 @@ cd simple-project && composer require webapp # (saisir 'yes')
 # Suppression du package empêchant la mise à jour de la base
 composer remove symfony/ux-turbo
 
-# Saisir BanWordValidator
-php bin/console make:validator
+# Validator
+php bin/console make:validator BanWordValidator
 
 # Entity (peut-être innutile ?)
 php bin/console make:entity Recipe
