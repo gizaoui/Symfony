@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}
 {{recipe.title}}
 {% endblock %}
@@ -9,8 +10,6 @@
 <h1>
 	{{recipe.title}}
 </h1>
-
-
 
 {{ form_start(form) }}
 
@@ -30,3 +29,4 @@
 <!-- {{dump(recipe)}} -->
 
 {% endblock %}
+

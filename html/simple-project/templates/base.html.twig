@@ -31,21 +31,22 @@
 			<li class="nav-item"><a
 				class="nav-link {{ app.current_route=='home'?'active':'' }}"
 				href="{{ path("home") }}">Home</a></li>
+
 			<li class="nav-item"><a
-				class="nav-link {{ app.current_route=='recipe.index'?'active':'' }}"
-				href="{{ path("recipe.index") }}">Recette</a></li>
+				class="nav-link {{ app.current_route=='admin.recipe.index'?'active':'' }}"
+				href="{{ path("admin.recipe.index") }}">Recette</a></li>
 			<li class="nav-item"><a
-				class="nav-link {{ app.current_route=='recipe.create'?'active':'' }}"
-				href="{{ path("recipe.create") }}">Create</a></li>
+				class="nav-link {{ app.current_route=='admin.recipe.create'?'active':'' }}"
+				href="{{ path("admin.recipe.create") }}">Create</a></li>
+			<li class="nav-item"><a
+				class="nav-link disabled {{ app.current_route=='admin.recipe.show'?'active':'' }}"
+				href="#">Show</a></li>
+			<li class="nav-item"><a
+				class="nav-link disabled {{ app.current_route=='admin.recipe.edit'?'active':'' }}"
+				href="#">Edit</a></li>
 			<li class="nav-item"><a
 				class="nav-link {{ app.current_route=='contact'?'active':'' }}"
 				href="{{ path("contact") }}">Contact</a></li>
-			<li class="nav-item"><a
-				class="nav-link disabled {{ app.current_route=='recipe.show'?'active':'' }}"
-				href="#">Show</a></li>
-			<li class="nav-item"><a
-				class="nav-link disabled {{ app.current_route=='recipe.edit'?'active':'' }}"
-				href="#">Edit</a></li>
 		</ul>
 	</div>
 	<div class="container p-2">
@@ -60,5 +61,3 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
-
-

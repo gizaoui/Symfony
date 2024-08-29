@@ -12,23 +12,24 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ContactType extends AbstractType {
-    
+class ContactType extends AbstractType
+{
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('name', TextType::class, ['empty_data' => ''])
             ->add('email', EmailType::class, ['empty_data' => ''])
             ->add('message', TextareaType::class, ['empty_data' => ''])
-            ->add('service', ChoiceType::class,[
-                'choices'=> [
-                    'Compta'=>'compta@demo.fr',
-                    'Support'=>'support@demo.fr',
-                    'Marketing'=>'marketing@demo.fr',
+            ->add('service', ChoiceType::class, [
+                'choices' => [
+                    'Compta' => 'compta@demo.fr',
+                    'Support' => 'support@demo.fr',
+                    'Marketing' => 'marketing@demo.fr',
                 ]
             ])
             ->add('save', SubmitType::class, ['label' => 'Envoyer']);
     }
-    
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(['data_class' => ContactDTO::class]);

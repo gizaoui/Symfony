@@ -1,16 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-Toutes les recettes
-{% endblock %}
+{% block title %}Hello RecipeController!{% endblock %}
 
 {% block body %}
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-	iste animi excepturi aliquam ducimus beatae quo reprehenderit nobis ea,
-	eveniet cumque sit tempore laborum, sed repellat! Recusandae eligendi
-	quos nam!</p>
-
-
 
 <table class="table">
 	<tbody>
@@ -22,12 +14,12 @@ Toutes les recettes
 	{% for recipe in recipes %}
 	<tr>
 		<td><a
-			href="{{ path("recipe.show", {id: recipe.id, slug: recipe.slug }) }}">{{recipe.title}}</a></td>
+			href="{{ path("admin.recipe.show", {id: recipe.id, slug: recipe.slug }) }}">{{recipe.title}}</a></td>
 		<td>
 			<div class="d-flex gap-1">
 				<a class="btn btn-primary btn-sm"
-					href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a>
-				<form action="{{ path("recipe.delete", {id: recipe.id }) }}"
+					href="{{ path("admin.recipe.edit", {id: recipe.id }) }}">Editer</a>
+				<form action="{{ path("admin.recipe.delete", {id: recipe.id }) }}"
 					method="post">
 					<!-- màj 'http_method_override: true' dans framework.yaml -->
 					<input type="hidden" name="_method" value="DELETE">
@@ -38,8 +30,5 @@ Toutes les recettes
 	</tr>
 	{% endfor %}
 </table>
-
-
-
 
 {% endblock %}

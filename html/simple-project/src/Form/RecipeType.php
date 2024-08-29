@@ -13,8 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RecipeType extends AbstractType {
-    
+class RecipeType extends AbstractType
+{
+
     /**
      * - /!\ le TextType dans 'Symfony\Component\Form\Extension\Core\Type\TextType' (php bin/console debug:form)
      * - Suppression de l'affichage dans les formulaires :
@@ -38,32 +39,27 @@ class RecipeType extends AbstractType {
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
             ->addEventListener(FormEvents::POST_SUBMIT, $this->attachTimestamps(...));
     }
-    
+
     public function attachTimestamps(PostSubmitEvent $event): void
     {
         $data = $event->getData();
-        if ($data instanceof Recipe)
-        {
+        if ($data instanceof Recipe) {
             $data->setUpdateAt(new \DateTimeImmutable());
-            if (! $data->getId())
-            { // Nouvel enregistrement
+            if (! $data->getId()) { // Nouvel enregistrement
                 $data->setCreatedAt(new \DateTimeImmutable());
             }
-        }
-        else
-        {
+        } else {
             return;
         }
     }
-    
-    # @formatter:off
+
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-           'data_class' => Recipe::class,
-           # Les groupes permettent le désactivation des règles de validation
-           'validation_groups' => ['Default', 'Extra']
+            'data_class' => Recipe::class,
+            # Les groupes permettent le désactivation des règles de validation
+            'validation_groups' => ['Default', 'Extra']
         ]);
     }
-    # @formatter:ono
 }
