@@ -3,7 +3,7 @@
 # FROM php:7.4-fpm
 FROM php:8.2-fpm
 
-RUN apt-get -y update && apt-get install -y gcc make libc-dev libpq-dev wget zip git vim
+RUN apt-get -y update && apt-get install -y gcc make libc-dev libpq-dev wget zip git vim postgresql-client
 RUN docker-php-ext-install pgsql pdo pdo_pgsql
 RUN pecl install apcu && docker-php-ext-enable apcu && pecl install xdebug && docker-php-ext-enable xdebug
 
@@ -24,7 +24,9 @@ RUN useradd -u 1000 gizaoui && \
 sed -i 's/^[# ]\+alias/alias/' ~/.bashrc && \
 echo "alias c='cd /usr/share/nginx/html && chown -R gizaoui: simple-project && chmod -R 777 simple-project && cd simple-project && find . -name .gitignore | grep -v '^\.\/\.gitignore' | xargs rm -f && php bin/console cache:pool:clear cache.global_clearer --all && rm -fr var/cache/* && rm -fr var/log/* && cd /usr/share/nginx/html/simple-project'" >> ~/.bashrc && \
 echo "alias cc='php bin/console cache:clear'" >> ~/.bashrc && \
+echo "alias dr='php bin/console debug:router'" >> ~/.bashrc && \
 echo "alias h='history'" >> ~/.bashrc && \
+echo "alias mydb='PGPASSWORD='postgres' psql -h mypostgres -U postgres -d mydb'" >> ~/.bashrc && \
 echo "alias mc='php bin/console make:controller '" >> ~/.bashrc && \
 echo "alias s='source ~/.bashrc'" >> ~/.bashrc && \
 echo "alias b='vim ~/.bashrc'" >> ~/.bashrc && \
