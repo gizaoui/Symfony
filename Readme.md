@@ -133,7 +133,7 @@ php bin/console make:form RecipeType Recipe
 mkdir /usr/share/nginx/html/simple-project/src/DTO
 touch /usr/share/nginx/html/simple-project/src/DTO/ContactDTO.php
 # Form ContactDTO
-php bin/console make:form ContactType ContactDTO
+php bin/console make:form ContactType \\App\\DTO\\ContactDTO
 
 
 # Controller (peut-être innutile ?)
