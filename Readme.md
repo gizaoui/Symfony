@@ -142,9 +142,9 @@ php bin/console make:form ContactType \\App\\DTO\\ContactDTO
 
 # Controller (peut-être innutile ?)
 php bin/console make:controller HomeController
-php bin/console make:controller Admin\\RecipeController
 php bin/console make:controller ContactController
-
+php bin/console make:controller Admin\\RecipeController
+php bin/console make:controller Admin\\CategoryController
 
 # /!\ Vider le cache (alias Linux touche 'c')
 
