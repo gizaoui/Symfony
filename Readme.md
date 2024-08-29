@@ -133,6 +133,7 @@ php bin/console make:form RecipeType Recipe
 # Controller (peut-être innutile ?)
 php bin/console make:controller HomeController
 php bin/console make:controller RecipeController
+php bin/console make:controller ContactController
 
 # Validator (peut-être innutile ?)
 php bin/console make:validator BanWordValidator
