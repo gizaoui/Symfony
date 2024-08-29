@@ -119,6 +119,8 @@ cd simple-project && composer require webapp # (saisir 'yes')
 # Suppression du package empêchant la mise à jour de la base
 composer remove symfony/ux-turbo
 
+# ===  IMPORTER LE PROJET SOUS ECLIPSE  ==
+
 # Validator
 php bin/console make:validator BanWordValidator
 
