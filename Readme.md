@@ -121,7 +121,7 @@ composer remove symfony/ux-turbo
 
 # ===  IMPORTER LE PROJET SOUS ECLIPSE  ==
 
-# Validator
+# Validator (peut-être innutile ?)
 php bin/console make:validator BanWordValidator
 
 # Entity (peut-être innutile ?)
@@ -134,10 +134,6 @@ php bin/console make:form RecipeType Recipe
 php bin/console make:controller HomeController
 php bin/console make:controller Admin\\RecipeController
 php bin/console make:controller ContactController
-
-# Validator (peut-être innutile ?)
-php bin/console make:validator BanWordValidator
-
 
 # /!\ Vider le cache (alias Linux touche 'c')
 
