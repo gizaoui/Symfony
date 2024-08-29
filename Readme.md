@@ -119,14 +119,14 @@ php bin/console make:validator
 php bin/console make:entity Recipe
 
 # Form (saisir l'entité 'Recipe'. Peut-être innutile ?)
-php bin/console make:form RecipeType
+php bin/console make:form RecipeType Recipe
 
 # Controller (peut-être innutile ?)
 php bin/console make:controller HomeController
 php bin/console make:controller RecipeController
 
 # Validator (peut-être innutile ?)
-php bin/console make:validator # (Saisir BanWordValidator)
+php bin/console make:validator BanWordValidator
 
 
 # /!\ Vider le cache (alias Linux touche 'c')
