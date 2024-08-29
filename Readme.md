@@ -121,14 +121,20 @@ composer remove symfony/ux-turbo
 
 # ===  IMPORTER LE PROJET SOUS ECLIPSE  ==
 
-# Validator (peut-être innutile ?)
+# Validator
 php bin/console make:validator BanWordValidator
 
-# Entity (peut-être innutile ?)
+# Entity Recipe
 php bin/console make:entity Recipe
-
-# Form (saisir l'entité 'Recipe'. Peut-être innutile ?)
+# Form Recipe
 php bin/console make:form RecipeType Recipe
+
+# Email
+mkdir /usr/share/nginx/html/simple-project/src/DTO
+touch /usr/share/nginx/html/simple-project/src/DTO/ContactDTO.php
+# Form ContactDTO
+php bin/console make:form ContactType ContactDTO
+
 
 # Controller (peut-être innutile ?)
 php bin/console make:controller HomeController
