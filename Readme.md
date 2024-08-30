@@ -115,7 +115,7 @@ La récupération du projet peut-être facilité par la synchronisation du dossi
 # Création du projet 'simple-project'
 composer create-project symfony/skeleton:"7.1.*" simple-project
 # Installation du package 'webapp'
-cd simple-project && composer require webapp # (saisir 'yes')
+cd simple-project && composer require webapp --no-interaction
 # Suppression du package empêchant la mise à jour de la base
 composer remove symfony/ux-turbo
 
