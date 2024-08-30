@@ -116,35 +116,8 @@ La récupération du projet peut-être facilité par la synchronisation du dossi
 composer create-project symfony/skeleton:"7.1.*" simple-project && \
 cd simple-project && composer require webapp --no-interaction && \
 composer remove symfony/ux-turbo
-
-# ===  IMPORTER LE PROJET SOUS ECLIPSE  ==
-
-# Validator
-php bin/console make:validator BanWordValidator
-
-# Entity Recipe
-php bin/console make:entity Recipe
-# Form Recipe
-php bin/console make:form RecipeType Recipe
-
-# Entity Category
-php bin/console make:entity Category
-php bin/console make:form CategoryType Category
-
-# Email
-mkdir /usr/share/nginx/html/simple-project/src/DTO
-touch /usr/share/nginx/html/simple-project/src/DTO/ContactDTO.php
-# Form ContactDTO
-php bin/console make:form ContactType \\App\\DTO\\ContactDTO
-
-
-# Controller (peut-être innutile ?)
-php bin/console make:controller HomeController
-php bin/console make:controller ContactController
-php bin/console make:controller Admin\\RecipeController
-php bin/console make:controller Admin\\CategoryController
-
 # /!\ Vider le cache (alias Linux touche 'c')
+
 
 # =========  MACHINE HÔTE  =========
 
