@@ -43,6 +43,17 @@
 			<li class="nav-item"><a
 				class="nav-link disabled {{ app.current_route=='admin.recipe.edit'?'active':'' }}"
 				href="#">Edit</a></li>
+
+			<li class="nav-item"><a
+				class="nav-link {{ app.current_route=='admin.category.index'?'active':'' }}"
+				href="{{ path("admin.category.index") }}">Category</a></li>
+			<li class="nav-item"><a
+				class="nav-link {{ app.current_route=='admin.category.create'?'active':'' }}"
+				href="{{ path("admin.category.create") }}">Create</a></li>
+			<li class="nav-item"><a
+				class="nav-link disabled {{ app.current_route=='admin.category.edit'?'active':'' }}"
+				href="#">Edit</a></li>
+
 		</ul>
 	</div>
 	<div class="container p-2">
@@ -57,3 +68,4 @@
 		crossorigin="anonymous"></script>
 </body>
 </html>
+
