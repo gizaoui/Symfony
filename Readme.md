@@ -10,6 +10,56 @@
 
 ## Symfony
 
+### Procédure de récupération
+
+La récupération du projet peut-être facilité par la synchronisation du dossier local */usr/share/nginx/html/simple-project* avec dépôt *git* :
+
+```bash
+# =========  CONTAINER  =========
+
+# Création du projet 'simple-project' & Suppression du package empêchant la mise à jour de la base
+cd /usr/share/nginx/html && rm -fr simple-project && \
+composer create-project symfony/skeleton:"7.1.*" simple-project && \
+cd simple-project && composer require webapp --no-interaction && \
+composer remove symfony/ux-turbo
+
+# /!\ Vider le cache (alias Linux touche 'c')
+
+
+# =========  MACHINE HÔTE  =========
+
+# Supprimer le système de fichier de la base de données (en ROOT)
+sudo rm -fr /home/gizaoui/git/github/Symfony/data
+
+# /!\ Recrer la base de données Postgres -> Supprimer l'ancienne image Docker et redémarrer le 'container'
+
+# Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
+cd /home/gizaoui/git/github/Symfony/html/simple-project && \
+rm -fr config public tests src templates .env
+
+git fetch --prune origin
+git reset --hard
+git clean -f -d
+
+cd /home/gizaoui/git/github/Symfony/html && chmod -R 777 simple-project
+
+
+# =========  CONTAINER  =========
+
+# /!\ Vider le cache (alias Linux touche 'c')
+
+# Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
+cd /usr/share/nginx/html/simple-project && \
+php bin/console make:migration && cat migrations/Version*.php
+
+# Création de la base de données (saisir 'yes')
+php bin/console doctrine:migration:migrate --no-interaction
+
+# /!\ Vider le cache (alias Linux touche 'c')
+```
+
+
+
 ### Création & configuration du projet :
 - `composer create-project symfony/skeleton:"7.1.*" simple-project`
 - `cd simple-project && composer require webapp`
@@ -105,55 +155,6 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 
 <br><br>
 
-### Synchronisation du dossier local avec dépôt *git*
-
-La récupération du projet peut-être facilité par la synchronisation du dossier local */usr/share/nginx/html/simple-project* avec dépôt *git* :
-
-```bash
-# =========  CONTAINER  =========
-
-# Création du projet 'simple-project' & Suppression du package empêchant la mise à jour de la base
-cd /usr/share/nginx/html && rm -fr simple-project && \
-composer create-project symfony/skeleton:"7.1.*" simple-project && \
-cd simple-project && composer require webapp --no-interaction && \
-composer remove symfony/ux-turbo
-
-# /!\ Vider le cache (alias Linux touche 'c')
-
-
-# =========  MACHINE HÔTE  =========
-
-# Supprimer le système de fichier de la base de données (en ROOT)
-sudo rm -fr /home/gizaoui/git/github/Symfony/data
-
-# /!\ Recrer la base de données Postgres -> Supprimer l'ancienne image Docker et redémarrer le 'container'
-
-# Récupération de dossiers 'config', 'public', 'tests', 'src', 'templates' et fichier '.env'
-cd /home/gizaoui/git/github/Symfony/html/simple-project && \
-rm -fr config public tests src templates .env
-
-git fetch --prune origin
-git reset --hard
-git clean -f -d
-
-cd /home/gizaoui/git/github/Symfony/html && chmod -R 777 simple-project
-
-
-# =========  CONTAINER  =========
-
-# /!\ Vider le cache (alias Linux touche 'c')
-
-# Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
-cd /usr/share/nginx/html/simple-project && \
-php bin/console make:migration && cat migrations/Version*.php
-
-# Création de la base de données (saisir 'yes')
-php bin/console doctrine:migration:migrate --no-interaction
-
-# /!\ Vider le cache (alias Linux touche 'c')
-```
-
-<br><hr>
 
 ## PhpPgAdmin
 
