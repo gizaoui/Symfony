@@ -58,7 +58,7 @@ php bin/console doctrine:migration:migrate --no-interaction
 # /!\ Vider le cache (alias Linux touche 'c')
 ```
 
-
+<br><br><hr><br>
 
 ### Création & configuration du projet :
 - `composer create-project symfony/skeleton:"7.1.*" simple-project`
