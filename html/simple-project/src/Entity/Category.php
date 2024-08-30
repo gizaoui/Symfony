@@ -80,7 +80,6 @@ class Category {
     public function setUpdateAt(\DateTimeImmutable $updateAt): static
     {
         $this->updateAt = $updateAt;
-        
         return $this;
     }
 }
