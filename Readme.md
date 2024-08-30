@@ -144,6 +144,7 @@ cd /home/gizaoui/git/github/Symfony/html && chmod -R 777 simple-project
 # /!\ Vider le cache (alias Linux touche 'c')
 
 # Création des requêtes SQL de création de la bdd dans le fichier 'migrations/Version[Date][Id].php'
+cd /usr/share/nginx/html/simple-project && \
 php bin/console make:migration && cat migrations/Version*.php
 
 # Création de la base de données (saisir 'yes')
