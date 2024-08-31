@@ -2,9 +2,8 @@
 
 namespace App\Form;
 
-use Symfony\Component\Form\Event\PreSubmitEvent;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Form\Event\PostSubmitEvent;
+use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class FormListenerFactory {
