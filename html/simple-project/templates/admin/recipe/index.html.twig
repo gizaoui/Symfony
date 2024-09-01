@@ -18,6 +18,7 @@ Hello RecipeController!
 	<tr>
 		<td><a
 			href="{{ path("admin.recipe.show", {id: recipe.id, slug: recipe.slug }) }}">{{recipe.title}}</a></td>
+		<!-- Permet l'affichage des catégories non définies -->
 		<td>{{ recipe.category.name | default('') }}</td>
 		<td>
 			<div class="d-flex gap-1">

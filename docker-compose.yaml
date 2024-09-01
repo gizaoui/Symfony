@@ -1,9 +1,9 @@
 # drm && docker-compose up
 
 
-version: '2.27.0'
-services:
+version: "3"
 
+services:
 
   ##########################################
   #                 PHP
@@ -18,6 +18,14 @@ services:
       - ./html:/usr/share/nginx/html
     networks:
       - common_network
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          # memory: 50M
+        reservations:
+          cpus: '0.3'
+          # memory: 20M
 
 
   ##########################################

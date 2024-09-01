@@ -22,21 +22,16 @@ class RecipeController extends AbstractController {
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
     public function index(Request $resquest, RecipeRepository $recipeRepository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
     {
-        //         # Test init db
+        #####  Test de la propriété cascade: ['persist']  #####
+        
+        # Suppression de catégories et des recette
         //         $recipes = $recipeRepository->findBy(['slug' => 'pate-bolognaise']);
-        //         foreach ( $recipes as $recipe )
-        //         {
-        //             $em->remove($recipe);
-        //         }
-        
+        //         foreach ( $recipes as $recipe ) {$em->remove($recipe);}
         //         $categories = $categoryRepository->findBy(['slug' => 'plat-principal']);
-        //         foreach ( $categories as $category )
-        //         {
-        //             $em->remove($category);
-        //         }
-        
+        //         foreach ( $categories as $category ) {$em->remove($category);}
         //         $em->flush();
         
+        # Ajout d'une recette
         //         # Recette 'Pâte bolognaise'
         //         $recipe = new Recipe();
         //         $recipe->setTitle('Pâte bolognaise')
@@ -48,26 +43,27 @@ class RecipeController extends AbstractController {
         //         $em->persist($recipe);
         //         $em->flush($recipe);
         
+        # Ajout d'une catégorie (sans persistance)
         //         # Catégorie 'Plat principal'
         //         $category = new Category();
         //         $category->setName('Plat principal')
         //             ->setSlug('plat-principal')
         //             ->setCreatedAt(new \DateTimeImmutable())
         //             ->setUpdateAt(new \DateTimeImmutable());
-        //         # $em->persist($category); // Pris en charge par la propriété cascade: ['persist']
+        //         # $em->persist($category); // /!\ Pris en charge par la propriété cascade: ['persist']
         //         $em->flush($category);
         
-        //         // Association de la catégorie 'Plat principal' à la recette 'Pâte bolognaise'
+        # Association de la catégorie 'Plat principal' à la recette 'Pâte bolognaise'
         //         $recipe->setCategory($category);
         //         $em->flush($recipe);
-        //
-        //
+        #
+        #
         $recipes = $recipeRepository->findWithDurationLowerThan(20);
         return $this->render('admin/recipe/index.html.twig', ['recipes' => $recipes]);
     }
     
     #[Route('/create', name: 'create', methods: ['GET', 'POST'])]
-    public function create(Request $resquest, EntityManagerInterface $em): Response
+    public function create(Request $resquest, EntityManagerInterface $em)
     {
         $recipe = new Recipe();
         /**
@@ -88,7 +84,7 @@ class RecipeController extends AbstractController {
     }
     
     #[Route('/show/{id}/{slug}', name: 'show', methods: ['GET', 'POST'], requirements: ['id' => Requirement::DIGITS])]
-    public function show(Request $resquest, int $id, string $slug, RecipeRepository $recipeRepository): Response
+    public function show(Request $resquest, int $id, string $slug, RecipeRepository $recipeRepository)
     {
         // dd($id, $slug);
         $recipe = $recipeRepository->find($id);
@@ -96,7 +92,7 @@ class RecipeController extends AbstractController {
     }
     
     #[Route('/edit/{id}', name: 'edit', methods: ['GET', 'POST'], requirements: ['id' => Requirement::DIGITS])]
-    public function edit(Recipe $recipe, Request $resquest, EntityManagerInterface $em): Response
+    public function edit(Recipe $recipe, Request $resquest, EntityManagerInterface $em)
     {
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($resquest);
@@ -110,7 +106,7 @@ class RecipeController extends AbstractController {
     }
     
     #[Route('/delete/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => Requirement::DIGITS])]
-    public function remove(Recipe $recipe, EntityManagerInterface $em): Response
+    public function remove(Recipe $recipe, EntityManagerInterface $em)
     {
         $em->remove($recipe);
         $em->flush();

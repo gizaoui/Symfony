@@ -14,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Category;
 
-
 class RecipeType extends AbstractType {
     
     public function __construct(private FormListenerFactory $factory)
@@ -36,15 +35,18 @@ class RecipeType extends AbstractType {
      *       ])
      * */
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    { # @formatter:off
         $builder->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
             ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
-            ->add('category', EntityType::class, ['choice_label' => 'name', 'class' => Category::class])
+            ->add('category', EntityType::class, [
+                    'choice_label' => 'name', // Champ de l'entité Category
+                    'class' => Category::class]) // Entité Category
             ->add('content', TextareaType::class, ['label' => 'Contenu', 'empty_data' => ''])
             ->add('duration', IntegerType::class)
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->factory->autoSlug('title'))
             ->addEventListener(FormEvents::POST_SUBMIT, $this->factory->timestamps());
+            # @formatter:on
     }
     
     # Remplace le  ->addEventListener(FormEvents::POST_SUBMIT, $this->attachTimestamps(...))

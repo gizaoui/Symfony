@@ -19,13 +19,19 @@ class CategoryType extends AbstractType {
     }
     
     public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
+    { # @formatter:off
         $builder->add('name', TextType::class, ['label' => 'Nom', 'empty_data' => ''])
             ->add('slug', TextType::class, ['label' => 'Slug', 'empty_data' => '', 'required' => false])
-            ->add('recipes', EntityType::class, ['choice_label' => 'title', 'multiple' => true, 'class' => Recipe::class, 'by_reference' => false, 'required' => false])
+            ->add('recipes', EntityType::class, [
+                    'choice_label' => 'title', // Champ de l'entité Recipe
+                    'multiple' => true, 
+                    'class' => Recipe::class, // Entité Recipe
+                    'by_reference' => false, // Permet l'affectation de la catégorie à l'ensemble de recette séléctionnées 
+                    'required' => false])
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->factory->autoSlug('name'))
             ->addEventListener(FormEvents::POST_SUBMIT, $this->factory->timestamps());
+            # @formatter:on
     }
     
     public function configureOptions(OptionsResolver $resolver): void
