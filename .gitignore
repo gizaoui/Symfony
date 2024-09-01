@@ -1,7 +1,7 @@
 data/
 .vscode/
 var/
-vendor/
+**/simple-project/vendor
 bin/
 migrations/
 # assets/
