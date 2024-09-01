@@ -20,8 +20,12 @@ La récupération du projet peut-être facilité par la synchronisation du dossi
 # Création du projet 'simple-project' & Suppression du package empêchant la mise à jour de la base
 cd /usr/share/nginx/html && rm -fr simple-project && \
 composer create-project symfony/skeleton:"7.1.*" simple-project && \
-cd simple-project && composer require webapp --no-interaction && \
-composer remove symfony/ux-turbo
+cd simple-project && composer require webapp --no-interaction
+
+# Alternative pour ne pas supprimer : composer remove symfony/ux-turbo :
+# Màj le fichier '/assets/app.js'
+import * as Turbo from '@hotwired/turbo';
+Turbo.session.drive = false;
 
 # /!\ Vider le cache (alias Linux touche 'c')
 
