@@ -1,7 +1,7 @@
 # drm && docker-compose up
 
 
-version: "3"
+version: "2.7.8"
 
 services:
 
@@ -55,8 +55,8 @@ services:
     ## Accès de l'exterieur du 'container'
     # apt update && apt-get install -y postgresql-client
     # PGPASSWORD='postgres' psql -h mypostgres -U postgres -d mydb
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
     # shm_size: 128mb
 
 
