@@ -14,6 +14,12 @@ services:
     ## Mettre à jour le fichier 'default.conf'
     # -> fastcgi_pass myphp_fpm:9000;
     container_name: myphp_fpm
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydb
+      POSTGRES_URL: mypostgres
+      SMTP_URL: mymailpit
     volumes:
       - ./html:/usr/share/nginx/html
     networks:
@@ -34,9 +40,8 @@ services:
   postgres:
     image: postgres:15.8-bookworm
     ## Mettre à jour le fichier 'phppgadmin/conf/config.inc.php'
-    # -> $conf['servers'][0]['host'] = 'mypostgres';
-    ## Mettre à jour le fichier 'resources/application.properties'
-    # spring.datasource.url=jdbc:postgresql://mypostgres:5432/mydb
+    # apt update && apt-get install -y postgresql-client
+    # PGPASSWORD='postgres' psql -h localhost -U postgres -d mydb
     # PGPASSWORD='postgres' psql -h mypostgres -U postgres -d mydb
     container_name: mypostgres
     environment:
@@ -53,10 +58,8 @@ services:
       - common_network
     
     ## Accès de l'exterieur du 'container'
-    # apt update && apt-get install -y postgresql-client
-    # PGPASSWORD='postgres' psql -h mypostgres -U postgres -d mydb
-    # ports:
-    #   - "5432:5432"
+    ports:
+      - "5432:5432"
     # shm_size: 128mb
 
 
@@ -74,7 +77,7 @@ services:
     networks:
       - common_network
     ports:
-      - '8000:80'
+      - '8001:80'
 
 
   ##########################################
