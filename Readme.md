@@ -171,7 +171,7 @@ $conf['extra_login_security'] = false;
 ```
 
 ---
-
+<!--
 Liens :
 
 - [phppgadmin](http://localhost:8000/phppgadmin/)
@@ -180,4 +180,4 @@ Liens :
 - [timestamp](https://www.commandprompt.com/education/how-to-insert-a-timestamp-into-a-postgresql-table/)
 - [symfony](https://dev.to/eelcoverbrugge/starting-a-new-symfony-project-on-linux-2amh)
 - [doctrine : 'composer require orm'](https://zestedesavoir.com/tutoriels/1713/doctrine-2-a-lassaut-de-lorm-phare-de-php/les-bases-de-doctrine-2/sauvegarder-des-entites-grace-a-doctrine/)
-
+-->
