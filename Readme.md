@@ -63,7 +63,7 @@ php bin/console doctrine:migration:migrate --no-interaction
 ```
 
 <br><br><hr><br>
-
+<!--
 ### Création & configuration du projet :
 - `composer create-project symfony/skeleton:"7.1.*" simple-project`
 - `cd simple-project && composer require webapp`
@@ -158,7 +158,7 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 ```
 
 <br><br>
-
+-->
 
 ## PhpPgAdmin
 
@@ -170,7 +170,7 @@ $conf['servers'][0]['port'] = 5432;
 $conf['extra_login_security'] = false;
 ```
 
----
+
 <!--
 Liens :
 
