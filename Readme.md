@@ -160,7 +160,7 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 ### Authentification
 
 ```bash
-# Creation de l'entité User
+# Creation des classes User/UserRepository
 php bin/console make:user
 ```
 
