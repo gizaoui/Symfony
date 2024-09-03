@@ -37,7 +37,7 @@ class HomeController extends AbstractController
         $user->setEmail('John@Doe.fr')
         ->setUsername('JohnDoe')
         ->setPassword($hasher->hashPassword($user, '0000'))
-        ->setRoles([]);
+        ->setRoles(['ROLE_ADMIN']);
         $em->persist($user);
         $em->flush();
     }

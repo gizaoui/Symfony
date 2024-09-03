@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/recipe', name: 'admin.recipe.')]
-#[IsGranted('ROLE_USER')] // Pour toutes les méthodes
+#[IsGranted('ROLE_ADMIN')] // Pour toutes les méthodes
 class RecipeController extends AbstractController {
     
     // http://localhost:8000/recette
