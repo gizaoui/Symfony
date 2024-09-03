@@ -157,6 +157,13 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/templates/recipe/show.html.twig
 ```
 
+### Authentification
+
+```bash
+# Creation de l'entité User
+php bin/console make:user
+```
+
 <br><br>
 -->
 
