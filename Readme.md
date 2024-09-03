@@ -41,7 +41,7 @@ sudo rm -fr /home/gizaoui/git/github/Symfony/data
 cd /home/gizaoui/git/github/Symfony/html/simple-project && \
 rm -fr config public tests src templates .env
 
-git fetch --prune origin
+git fetch --prune
 git reset --hard
 git clean -f -d
 
