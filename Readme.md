@@ -162,6 +162,13 @@ wget https://raw.githubusercontent.com/gizaoui/Symfony/main/html/simple-project/
 ```bash
 # Creation des classes User/UserRepository et security.yaml
 php bin/console make:user
+
+# Authentification
+# - created: src/Security/AppAuthenticator.php
+# - updated: config/packages/security.yaml
+# - created: src/Controller/SecurityController.php
+# - created: templates/security/login.html.twig
+php bin/console make:auth
 ```
 
 <br><br>
