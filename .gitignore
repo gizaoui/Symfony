@@ -3,6 +3,7 @@ data/
 var/
 **/simple-project/vendor
 bin/
+bak/
 migrations/
 # assets/
 .env.test

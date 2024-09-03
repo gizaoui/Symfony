@@ -9,55 +9,19 @@ use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use App\Entity\Category;
-use Doctrine\DBAL\Types\DateImmutableType;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/recipe', name: 'admin.recipe.')]
+#[IsGranted('ROLE_USER')] // Pour toutes les méthodes
 class RecipeController extends AbstractController {
     
     // http://localhost:8000/recette
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
-    public function index(Request $resquest, RecipeRepository $recipeRepository, CategoryRepository $categoryRepository, EntityManagerInterface $em): Response
+    public function index(RecipeRepository $recipeRepository)
     {
-        #####  Test de la propriété cascade: ['persist']  #####
-        
-        # Suppression de catégories et des recette
-        //         $recipes = $recipeRepository->findBy(['slug' => 'pate-bolognaise']);
-        //         foreach ( $recipes as $recipe ) {$em->remove($recipe);}
-        //         $categories = $categoryRepository->findBy(['slug' => 'plat-principal']);
-        //         foreach ( $categories as $category ) {$em->remove($category);}
-        //         $em->flush();
-        
-        # Ajout d'une recette
-        //         # Recette 'Pâte bolognaise'
-        //         $recipe = new Recipe();
-        //         $recipe->setTitle('Pâte bolognaise')
-        //             ->setSlug('pate-bolognaise')
-        //             ->setContent('Sauce tomate')
-        //             ->setDuration(12)
-        //             ->setCreatedAt(new \DateTimeImmutable())
-        //             ->setUpdateAt(new \DateTimeImmutable());
-        //         $em->persist($recipe);
-        //         $em->flush($recipe);
-        
-        # Ajout d'une catégorie (sans persistance)
-        //         # Catégorie 'Plat principal'
-        //         $category = new Category();
-        //         $category->setName('Plat principal')
-        //             ->setSlug('plat-principal')
-        //             ->setCreatedAt(new \DateTimeImmutable())
-        //             ->setUpdateAt(new \DateTimeImmutable());
-        //         # $em->persist($category); // /!\ Pris en charge par la propriété cascade: ['persist']
-        //         $em->flush($category);
-        
-        # Association de la catégorie 'Plat principal' à la recette 'Pâte bolognaise'
-        //         $recipe->setCategory($category);
-        //         $em->flush($recipe);
-        #
-        #
+        # $this->denyAccessUnlessGranted('ROLE_USER'); // Remplacé par #[IsGranted('ROLE_USER')]
         $recipes = $recipeRepository->findWithDurationLowerThan(20);
         return $this->render('admin/recipe/index.html.twig', ['recipes' => $recipes]);
     }
@@ -112,5 +76,43 @@ class RecipeController extends AbstractController {
         $em->flush();
         $this->addFlash('success', 'La recette a été supprimée');
         return $this->redirectToRoute('admin.recipe.index');
+    }
+    
+    public function __construct(private RecipeRepository $recipeRepository, private CategoryRepository $categoryRepository, private EntityManagerInterface $em)
+    {
+        #####  Test de la propriété cascade: ['persist']  #####
+        
+        # Suppression de catégories et des recette
+        //         $recipes = $recipeRepository->findBy(['slug' => 'pate-bolognaise']);
+        //         foreach ( $recipes as $recipe ) {$em->remove($recipe);}
+        //         $categories = $categoryRepository->findBy(['slug' => 'plat-principal']);
+        //         foreach ( $categories as $category ) {$em->remove($category);}
+        //         $em->flush();
+        
+        # Ajout d'une recette
+        //         # Recette 'Pâte bolognaise'
+        //         $recipe = new Recipe();
+        //         $recipe->setTitle('Pâte bolognaise')
+        //             ->setSlug('pate-bolognaise')
+        //             ->setContent('Sauce tomate')
+        //             ->setDuration(12)
+        //             ->setCreatedAt(new \DateTimeImmutable())
+        //             ->setUpdateAt(new \DateTimeImmutable());
+        //         $em->persist($recipe);
+        //         $em->flush($recipe);
+        
+        # Ajout d'une catégorie (sans persistance)
+        //         # Catégorie 'Plat principal'
+        //         $category = new Category();
+        //         $category->setName('Plat principal')
+        //             ->setSlug('plat-principal')
+        //             ->setCreatedAt(new \DateTimeImmutable())
+        //             ->setUpdateAt(new \DateTimeImmutable());
+        //         # $em->persist($category); // /!\ Pris en charge par la propriété cascade: ['persist']
+        //         $em->flush($category);
+        
+        # Association de la catégorie 'Plat principal' à la recette 'Pâte bolognaise'
+        //         $recipe->setCategory($category);
+        //         $em->flush($recipe);
     }
 }
