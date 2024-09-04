@@ -2,17 +2,19 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Recipe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Entity\Category;
+use Symfony\Component\Validator\Constraints\Image;
 
 class RecipeType extends AbstractType {
     
@@ -38,6 +40,10 @@ class RecipeType extends AbstractType {
     { # @formatter:off
         $builder->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
             ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
+            ->add('thumbnailFile', FileType::class, ['label' => 'Image', 
+                    'mapped'=> false,  
+                    'required' => false, 
+                    'constraints'=>[new Image()]])
             ->add('category', EntityType::class, [
                     'choice_label' => 'name', // Champ de l'entité Category
                     'class' => Category::class]) // Entité Category

@@ -12,10 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[Route('/admin/recipe', name: 'admin.recipe.')]
-#[IsGranted('ROLE_ADMIN')] // Pour toutes les méthodes
-class RecipeController extends AbstractController {
+#[IsGranted('ROLE_ADMIN')]
+class 
+// Pour toutes les méthodes
+RecipeController extends AbstractController {
     
     // http://localhost:8000/recette
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
@@ -62,6 +65,15 @@ class RecipeController extends AbstractController {
         $form->handleRequest($resquest);
         if ($form->isSubmitted() && $form->isValid())
         {
+            /** @var UploadedFile $file */
+            $file = $form->get('thumbnailFile')
+                ->getData();
+            $filename = $recipe->getId().'_'.$file->getClientOriginalName();
+            // dd($filename);
+            # php bin/console debug:container --parameters | grep dir
+            $file->move($this->getParameter('kernel.project_dir').'/public/images/recettes', $filename);
+            $recipe->setThumbnail($filename);
+            
             $em->flush();
             $this->addFlash('success', 'La recette a été mise à jour');
             return $this->redirectToRoute('admin.recipe.index');
