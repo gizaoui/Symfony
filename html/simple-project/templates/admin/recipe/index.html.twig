@@ -1,39 +1,51 @@
 {% extends 'admin/admin.html.twig' %}
 
 {% block title %}
-Hello RecipeController!
+	Hello RecipeController!
 {% endblock %}
 
 {% block body %}
 
-<table class="table">
-	<tbody>
-		<tr>
-			<th>Titre</th>
-			<th>Catégorie</th>
-			<th>Action</th>
-		</tr>
-	</tbody>
-	{% for recipe in recipes %}
-	<tr>
-		<td><a
-			href="{{ path("admin.recipe.show", {id: recipe.id, slug: recipe.slug }) }}">{{recipe.title}}</a></td>
-		<!-- Permet l'affichage des catégories non définies -->
-		<td>{{ recipe.category.name | default('') }}</td>
-		<td>
-			<div class="d-flex gap-1">
-				<a class="btn btn-primary btn-sm"
-					href="{{ path("admin.recipe.edit", {id: recipe.id }) }}">Editer</a>
-				<form action="{{ path("admin.recipe.delete", {id: recipe.id }) }}"
-					method="post">
-					<!-- màj 'http_method_override: true' dans framework.yaml -->
-					<input type="hidden" name="_method" value="DELETE">
-					<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-				</form>
-			</div>
-		</td>
-	</tr>
-	{% endfor %}
-</table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Titre</th>
+				<th>Catégorie</th>
+				<th>Action</th>
+			</tr>
+		</tbody>
+		{% for recipe in recipes %}
+			<tr>
+				<td>
+					<a href="{{ path("admin.recipe.show", {id: recipe.id, slug: recipe.slug }) }}">{{recipe.title}}</a>
+				</td>
+				<!-- Permet l'affichage des catégories non définies -->
+				<td>{{ recipe.category.name | default('') }}</td>
+				<td>
+					<div class="d-flex gap-1">
+						<a class="btn btn-primary btn-sm" href="{{ path("admin.recipe.edit", {id: recipe.id }) }}">Editer</a>
+						<form
+							action="{{ path("admin.recipe.delete", {id: recipe.id }) }}" method="post">
+							<!-- màj 'http_method_override: true' dans framework.yaml -->
+							<input type="hidden" name="_method" value="DELETE">
+							<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+						</form>
+					</div>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<div class="d-flex">
+		{% if page > 1 %}
+			<a href="{{path('admin.recipe.index',{page: page - 1})}}" class="btn btn-secondary">Page précédente</a>
+		{% endif %}
+
+		{% if page < maxPage %}
+			<a href="{{path('admin.recipe.index',{page: page + 1})}}" class="btn btn-secondary">Page suivante</a>
+		{% endif %}
+
+	</div>
+
 
 {% endblock %}
