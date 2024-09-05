@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
 
+
 class RecipeType extends AbstractType {
     
     public function __construct(private FormListenerFactory $factory)
@@ -41,9 +42,9 @@ class RecipeType extends AbstractType {
         $builder->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
             ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
             ->add('thumbnailFile', FileType::class, ['label' => 'Image', 
-                    'mapped'=> false,  
-                    'required' => false, 
-                    'constraints'=>[new Image()]])
+                    'required' => false,
+                    /*'mapped'=> false,
+                    'constraints'=>[new Image()]*/ ])
             ->add('category', EntityType::class, [
                     'choice_label' => 'name', // Champ de l'entité Category
                     'class' => Category::class]) // Entité Category

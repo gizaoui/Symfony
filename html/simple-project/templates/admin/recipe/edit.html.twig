@@ -26,8 +26,14 @@
 {{ form_end(form) }}
 
 <p>
+	<!--
 	<img src="/images/recettes/{{ recipe.thumbnail }}"
 		alt="{{ recipe.thumbnail }}">
+	-->
+
+	<img src="{{ vich_uploader_asset(recipe, 'thumbnailFile') }}"
+	alt="{{ recipe.thumbnail }}">
+
 </p>
 
 <hr>

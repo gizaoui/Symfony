@@ -2,9 +2,8 @@
 
 namespace App\Controller\Admin;
 
-// @formatter:off
+
 use Symfony\Component\Routing\Requirement\Requirement;
-// @formatter:on
 use App\Entity\Recipe;
 use App\Form\RecipeType;
 use App\Repository\CategoryRepository;
@@ -14,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+# use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[Route('/admin/recipe', name: 'admin.recipe.')]
 #[IsGranted('ROLE_ADMIN')]
@@ -65,31 +64,32 @@ RecipeController extends AbstractController {
     {
         $form = $this->createForm(RecipeType::class, $recipe);
         $form->handleRequest($resquest);
+
         if ($form->isSubmitted() && $form->isValid())
         {
-            /** @var UploadedFile $file */
-            $file = $form->get('thumbnailFile')
-                ->getData();
+            // /** @var UploadedFile $file */
+            // $file = $form->get('thumbnailFile')
+            //     ->getData();
             
-            if ($file != null)
-            {
-                $filename = $recipe->getId().'_'.$file->getClientOriginalName();
+            // if ($file != null)
+            // {
+            //     $filename = $recipe->getId().'_'.$file->getClientOriginalName();
                 
-                if (file_exists($filename))
-                {
-                    if (! unlink($filename))
-                    {
-                        $this->addFlash('danger', 'Error deleting the file');
-                    }
-                }
-                else
-                {
-                    // dd($filename);
-                    # php bin/console debug:container --parameters | grep dir
-                    $file->move($this->getParameter('kernel.project_dir').'/public/images/recettes', $filename);
-                    $recipe->setThumbnail($filename);
-                }
-            }
+            //     if (file_exists($filename))
+            //     {
+            //         if (! unlink($filename))
+            //         {
+            //             $this->addFlash('danger', 'Error deleting the file');
+            //         }
+            //     }
+            //     else
+            //     {
+            //         // dd($filename);
+            //         # php bin/console debug:container --parameters | grep dir
+            //         $file->move($this->getParameter('kernel.project_dir').'/public/images/recettes', $filename);
+            //         $recipe->setThumbnail($filename);
+            //     }
+            // }
             
             $em->flush();
             $this->addFlash('success', 'La recette a été mise à jour');
