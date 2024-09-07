@@ -2,6 +2,7 @@ data/
 .vscode/
 var/
 **/simple-project/vendor
+**/simple-project_20*
 bin/
 bak/
 migrations/
@@ -10,7 +11,7 @@ migrations/
 .buildpath
 compose.override.yaml
 compose.yaml
-composer.json
+# composer.json
 compose.lock
 composer.lock
 importmap.php

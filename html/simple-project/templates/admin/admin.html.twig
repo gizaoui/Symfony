@@ -8,6 +8,13 @@
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
+
+<style>
+	i.material-icons {
+		display: none;
+	}
+</style>
+
 </head>
 <link rel="icon"
 	href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0128 128%22>
@@ -43,7 +50,6 @@
 			<li class="nav-item"><a
 				class="nav-link disabled {{ app.current_route=='admin.recipe.edit'?'active':'' }}"
 				href="#">Edit</a></li>
-
 			<li class="nav-item"><a
 				class="nav-link {{ app.current_route=='admin.category.index'?'active':'' }}"
 				href="{{ path("admin.category.index") }}">Category</a></li>

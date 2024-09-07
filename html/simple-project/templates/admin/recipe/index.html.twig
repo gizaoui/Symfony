@@ -9,6 +9,7 @@
 	<table class="table">
 		<tbody>
 			<tr>
+				<th>{{ knp_pagination_sortable(recipes, 'Id', 'r.id') }}</th>
 				<th>Titre</th>
 				<th>Catégorie</th>
 				<th>Action</th>
@@ -16,6 +17,9 @@
 		</tbody>
 		{% for recipe in recipes %}
 			<tr>
+				<td>
+					{{ recipe.id }}
+				</td>
 				<td>
 					<a href="{{ path("admin.recipe.show", {id: recipe.id, slug: recipe.slug }) }}">{{recipe.title}}</a>
 				</td>
@@ -36,16 +40,20 @@
 		{% endfor %}
 	</table>
 
-	<div class="d-flex">
-		{% if page > 1 %}
-			<a href="{{path('admin.recipe.index',{page: page - 1})}}" class="btn btn-secondary">Page précédente</a>
-		{% endif %}
+	{{ knp_pagination_render(recipes) }}
 
-		{% if page < maxPage %}
-			<a href="{{path('admin.recipe.index',{page: page + 1})}}" class="btn btn-secondary">Page suivante</a>
-		{% endif %}
 
-	</div>
+	<!--
+		<div class="d-flex">
+			{% if page > 1 %}
+				<a href="{{path('admin.recipe.index',{page: page - 1})}}" class="btn btn-secondary">Page précédente</a>
+			{% endif %}
+	
+			{% if page < maxPage %}
+				<a href="{{path('admin.recipe.index',{page: page + 1})}}" class="btn btn-secondary">Page suivante</a>
+			{% endif %}
+		</div>
+	-->
 
 
 {% endblock %}
