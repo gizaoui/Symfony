@@ -17,11 +17,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/admin/recipe', name: 'admin.recipe.')]
 #[IsGranted('ROLE_ADMIN')]
-class
-// Pour toutes les méthodes
-RecipeController extends AbstractController
+class RecipeController extends AbstractController
 {
-
     // http://localhost:8000/recette
     #[Route('/', name: 'index', methods: ['GET', 'POST'])]
     public function index(RecipeRepository $recipeRepository, Request $resquest)
