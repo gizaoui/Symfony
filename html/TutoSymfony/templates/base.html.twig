@@ -23,20 +23,17 @@
 	<body>
 		<nav class="navbar navbar-light mb-2 navbar-expand-sm" style="background-color: #f7e3fd;">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Logo</a>
-				<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+				<a class="navbar-brand" href="#">Mon site</a>
+				<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#monsite" aria-controls="monsite" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<div class="collapse navbar-collapse" id="navbarColor02">
+				<div class="collapse navbar-collapse" id="monsite">
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
 							<a class="nav-link {{ app.current_route=='home'?'active':'' }}" href="{{ path("home") }}">Acceuil</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Link</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Link</a>
+							<a class="nav-link {{ app.current_route starts with 'recipe.'?'active':'' }}" href="{{ path("recipe.index") }}">Recipe</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">

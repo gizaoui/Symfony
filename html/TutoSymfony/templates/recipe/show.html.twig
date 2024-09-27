@@ -27,5 +27,13 @@
             <li><strong>login :</strong> {{ person.firstname ~ person.lastname | lower }}</li>
 		</ul>
 
+        <h2>Person</h2>
+        <ul>
+            {% for key, value in person %}
+                <li>{{ key }} : {{ value }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ dump(app.request) }}
 	</div>
 {% endblock %}

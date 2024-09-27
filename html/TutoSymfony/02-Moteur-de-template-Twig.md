@@ -1,6 +1,8 @@
 # Moteur de template Twig
 
 
+## Structure du template
+
 Le *render* de l'url permet de renvoyer une [page](http://localhost:8000/recipe) html avec des données envoyées par le paramètre ***controller_name***.
 
 ```php
@@ -33,6 +35,7 @@ Le paramètre ***controller_name*** est affiché dans sa balise.
 </div>
 {% endblock %}
 ```
+
 
 La page html des *recipes* contient inclus la page *base.html.twig* permattant l'intégration de le feuilles de style *app.css*.<br>
 On y intégre *bootstrap* de la façon suivante.
@@ -75,6 +78,8 @@ On y intégre *bootstrap* de la façon suivante.
 
 <br>
 
+## Transfert de stucture
+
 Il est possible d'envoyer une structure de données sur la [page](localhost:8000/recipe/pate-bolognaise/32) html. 
 
 ```php
@@ -103,5 +108,49 @@ Elle sera recupéré de la façon suivante :
             <li><strong>lastname :</strong> {{ person.lastname }}</li>
             <li><strong>login :</strong> {{ person.firstname ~ person.lastname | lower }}</li>
 		</ul>
+
+        <h2>Person</h2>
+        <ul>
+            {% for key, value in person %}
+                <li>{{ key }} : {{ value }} </li>
+            {% endfor %}
+        </ul>
+
+        {{ dump(slug, id, person) }}
 	</div>
+```
+
+<br>
+
+## Liens
+
+Les liens sont soit déclarés dans le fichier *route.yaml* :
+
+```yaml
+home:
+   path: /
+   controller: App\Controller\HomeController::index
+```
+
+Soit directement déclaré dans le *name* une balise route : `#[Route('/recipe', name: 'recipe.index')]`
+
+<br>
+
+Elles permettent d'appeler les pages web via leurs *controller* :
+
+```html
+<li class="nav-item">
+	<a class="nav-link {{ app.current_route=='home'?'active':'' }}" href="{{ path("home") }}">Acceuil</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link {{ app.current_route starts with 'recipe.'?'active':'' }}" href="{{ path("recipe.index") }}">Recipe</a>
+</li>
+```
+
+Les paramètres peuvent être envoyés au *controller* en utilisant un lien de la façon suivante :
+
+```html
+	<ul>
+		<li><a path="{{ url('recipe.show', {id:32, slug:'pate-bolognaise'}) }}">Pate bolognaise</a></li>
+	</ul>
 ```

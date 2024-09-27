@@ -80,6 +80,8 @@ On souhaite récupérer les deux paramètres ***pate-bolognaise*** et ***32*** d
 
 Création d'un *controller* &nbsp;&#8640;&nbsp; `php bin/console make:controller RecipeController`
 
+La route est directement définie dans la balise `#[Route('/recipe/{slug}/{id}', name: 'recipe.show')]`
+
 ```php
 class RecipeController {
     #[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
