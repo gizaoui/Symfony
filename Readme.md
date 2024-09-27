@@ -30,6 +30,9 @@ Turbo.session.drive = false;
 
 # /!\ Vider le cache (alias Linux touche 'c')
 
+# Tester
+symfony server:start --port=8000 --no-tls
+
 
 # =========  MACHINE HÔTE  =========
 
