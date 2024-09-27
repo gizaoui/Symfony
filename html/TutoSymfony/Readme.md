@@ -84,4 +84,4 @@ class RecipeController {
 }
 ```
 
-![01](01.png)
+![01](pic/01.png)
