@@ -1,7 +1,7 @@
 data/
 .vscode/
 var/
-**/simple-project/vendor
+**/vendor
 **/simple-project_20*
 bin/
 bak/

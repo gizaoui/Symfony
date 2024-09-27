@@ -30,6 +30,7 @@ class RecipeController extends AbstractController
         $recipes = $recipeRepository->paginateRecipes($page, $limit);
         // $maxPage = ceil($recipes->count() / $limit);
         $maxPage = ceil($recipes->getTotalItemCount() / $limit);
+        
 
         // dd($recipes->count());
         return $this->render('admin/recipe/index.html.twig', [

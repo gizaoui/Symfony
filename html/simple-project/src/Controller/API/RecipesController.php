@@ -15,6 +15,7 @@ class RecipesController extends AbstractController
    #[Route('/api/recipes')]
    public function index(RecipeRepository $recipeRepository, Request $request)
    {
+      # http://localhost:8000/api/recipes
       $recipes = $recipeRepository->paginateRecipes($request->query->getInt('page', 1), 2);
       return $this->json($recipes, 200, [], [
          # Liste des champs que l'on souhaite convertir
@@ -25,6 +26,7 @@ class RecipesController extends AbstractController
    #[Route('/api/recipes/{id}', methods: ['GET', 'POST'], requirements: ['id' => Requirement::DIGITS])]
    public function show(Recipe $recipe)
    {
+      # http://localhost:8000/api/recipes/12
       return $this->json($recipe, 200, [], [
          'groups' => ['recipes.index', 'recipes.show']
       ]);

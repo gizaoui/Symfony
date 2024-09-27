@@ -4,8 +4,6 @@ namespace App\Normaliser;
 
 use App\Entity\Recipe;
 use Knp\Component\Pager\Pagination\PaginationInterface;
-use Normalizer;
-use PhpParser\Node\Expr\Cast\Object_;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
@@ -23,7 +21,6 @@ class PaginationNormaliser implements NormalizerInterface
          throw new \RuntimeException();
       }
 
-      // 'items' => $this->normalizer->normalize($object->getItems(), $format, $context),
       return [
          'items' => array_map(fn (Recipe $recipe) => $this->normalizer->normalize($recipe, $format, $context), $object->getItems()),
          'total' => $object->getTotalItemCount(),
