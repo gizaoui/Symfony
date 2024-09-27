@@ -80,7 +80,7 @@ class RecipeController {
     #[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
     public function index(Request $request): Response {
         dd($request);
-        // dd($request->attributes->get('slug'), $request->attributes->get('id'));
+        // dd($request->attributes->get('slug'), $request->attributes->getInt('id'));
     }
 }
 ```
