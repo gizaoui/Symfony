@@ -70,7 +70,7 @@ Tester en lançant l'[url](http://localhost:8000/?name=World).
 
 <hr>
 
-On souhaite récupérer les deux paramètres *pate-bolognaise* et *32* dans l'url de type [http://monsite/**pate-bolognaise**/**32**](http://localhost:8000/recipe/pate-bolognaise/32)
+On souhaite récupérer les deux paramètres ***pate-bolognaise*** et ***32*** dans l'url de type [http://monsite/**pate-bolognaise**/**32**](http://localhost:8000/recipe/pate-bolognaise/32)
 
 
 Création d'un *controller* &nbsp;&#8640;&nbsp; `php bin/console make:controller RecipeController`
@@ -80,6 +80,7 @@ class RecipeController {
     #[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
     public function index(Request $request): Response {
         dd($request);
+        // dd($request->attributes->get('slug'), $request->attributes->get('id'));
     }
 }
 ```
