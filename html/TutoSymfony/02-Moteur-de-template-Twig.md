@@ -78,7 +78,7 @@ On y intégre *bootstrap* de la façon suivante.
 
 <br>
 
-## Transfert de stucture
+## Transfert de stucture de données
 
 Il est possible d'envoyer une structure de données sur la [page](localhost:8000/recipe/pate-bolognaise/32) html. 
 
@@ -122,7 +122,7 @@ Elle sera recupéré de la façon suivante :
 
 <br>
 
-## Liens
+## Liens (navbar)
 
 Les liens sont soit déclarés dans le fichier *route.yaml* :
 
