@@ -10,11 +10,8 @@ use Symfony\Component\Routing\Attribute\Route;
 class RecipeController
 {
     #[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
-    public function index(Request $request): Response
+    public function index(Request $request, string $slug, int $id): Response
     {
-        dd(
-            $request->attributes->get('slug'),
-            $request->attributes->getInt('id')
-        );
+        dd($slug, $id);
     }
 }

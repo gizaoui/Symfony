@@ -85,6 +85,20 @@ class RecipeController {
 }
 ```
 
-On constate la présence des deux attribus dans renvoyés par l'[url](http://localhost:8000/recipe/pate-bolognaise/32)
+On constate la présence des deux attributs dans renvoyés par l'[url](http://localhost:8000/recipe/pate-bolognaise/32)
 
 ![01](pic/01.png)
+
+
+Les attributs peuvent être récupérés à travers des paramètres du même nom.
+
+```php
+class RecipeController {
+    #[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
+    public function index(Request $request, string $slug, int $id): Response {
+        dd($slug, $id);
+    }
+}
+```
+
+![02](pic/02.png)
