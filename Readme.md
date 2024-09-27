@@ -21,6 +21,10 @@ La récupération du projet peut-être facilité par la synchronisation du dossi
 cd /usr/share/nginx/html && rm -fr simple-project && \
 composer create-project symfony/skeleton:"7.1.*" simple-project && \
 cd simple-project && composer require webapp --no-interaction
+
+# Suppression des fichiers '.gitignore' du projet
+find . -name  .gitignore | xargs rm -f
+
 composer require vich/uploader-bundle
 
 # Alternative pour ne pas supprimer : composer remove symfony/ux-turbo :
