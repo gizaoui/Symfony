@@ -1,3 +1,38 @@
 body {
     background-color: rgb(223, 207, 241);
 }
+
+
+#formLogin {
+    padding: 15px;
+    min-width: 300px;
+}
+
+.navbar-nav li > a {
+    text-transform: capitalize;
+    color: #d19bcd;
+    transition: background-color .2s, color .2s;
+}
+
+.navbar-nav li > a:hover {
+    background-color: #d19bcd;
+}
+
+.navbar-nav li > a.active {
+    background-color: #d19bcd;
+    color: #fff;
+}
+
+nav {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+a.nav-link {
+    padding: 1em !important;
+}
+
+.navbar-toggler {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+}
