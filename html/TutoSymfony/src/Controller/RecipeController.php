@@ -7,11 +7,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class RecipeController
+class RecipeController extends AbstractController
 {
-    #[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
-    public function index(Request $request, string $slug, int $id): Response
+    #[Route('/recipe', name: 'recipe.index')]
+    public function index(): Response
     {
-        dd($slug, $id);
+        return $this->render('recipe/index.html.twig', [
+            'controller_name' => 'Recipe Controller',
+        ]);
+    }
+
+    #[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
+    public function show(Request $request, string $slug, int $id): Response
+    {
+        return $this->render('recipe/index.html.twig', [
+            'controller_name' => 'Recipe Controller',
+        ]);
     }
 }
