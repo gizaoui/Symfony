@@ -34,7 +34,8 @@ Le paramètre ***controller_name*** est affiché dans sa balise.
 {% endblock %}
 ```
 
-La page html des *recipes* contient inclus la page *base.html.twig* permattant l'intégration de le feuilles de style *app.css*.
+La page html des *recipes* contient inclus la page *base.html.twig* permattant l'intégration de le feuilles de style *app.css*.<br>
+On y intégre *bootstrap* de la façon suivante.
 
 ```html
 <!DOCTYPE html>
@@ -45,6 +46,8 @@ La page html des *recipes* contient inclus la page *base.html.twig* permattant l
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		{% block stylesheets %}
 			<!-- TutoSymfony/assets/styles/app.css -->
@@ -60,6 +63,8 @@ La page html des *recipes* contient inclus la page *base.html.twig* permattant l
 	<body>
 		{% block body %}{% endblock %}
 	</body>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
 ```
 
