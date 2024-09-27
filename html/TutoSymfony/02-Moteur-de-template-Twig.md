@@ -37,7 +37,7 @@ Le paramètre ***controller_name*** est affiché dans sa balise.
 ```
 
 
-La page html des *recipes* contient inclus la page *base.html.twig* permattant l'intégration de le feuilles de style *app.css*.<br>
+La page html des *recipes* inclus la page ***base.html.twig*** permattant l'intégration de le feuilles de style *app.css*.<br>
 On y intégre *bootstrap* de la façon suivante.
 
 ```html
