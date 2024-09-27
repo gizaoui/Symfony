@@ -31,7 +31,12 @@ home:
    controller: App\Controller\HomeController::index
 ```
 
+L'ensemble de routes peuvent être renvoyé &nbsp;&#8640;&nbsp; `php bin/console debug:router`
+
+
 Tester l'application &nbsp;&#8640;&nbsp; `symfony server:start --port=8000 --no-tls`
+
+<br>
 
 La *Response* renvoyée peut-être une chaîne de caractère :
 
@@ -89,6 +94,7 @@ On constate la présence des deux attributs dans renvoyés par l'[url](http://lo
 
 ![01](pic/01.png)
 
+<br>
 
 Les attributs peuvent être récupérés à travers des paramètres du même nom.
 
