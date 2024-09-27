@@ -132,7 +132,7 @@ home:
    controller: App\Controller\HomeController::index
 ```
 
-Soit directement déclaré dans le *name* une balise route : `#[Route('/recipe', name: 'recipe.index')]`
+Soit directement déclaré dans le *name* de la balise route : `#[Route('/recipe', name: 'recipe.index')]`
 
 <br>
 
