@@ -70,7 +70,7 @@ Tester en lançant l'[url](http://localhost:8000/?name=World).
 
 <br>
 
-On souhaite récupérer les deux paramètres *pate-bolognaise* et *32* dans l'[http://monsite/pate-bolognaise/32](http://localhost:8000/recipe/pate-bolognaise/32)
+On souhaite récupérer les deux paramètres *pate-bolognaise* et *32* dans l'url de type [http://monsite/**pate-bolognaise**/**32**](http://localhost:8000/recipe/pate-bolognaise/32)
 
 
 Création d'un *controller* &nbsp;&#8640;&nbsp; `php bin/console make:controller RecipeController`
@@ -83,5 +83,7 @@ class RecipeController {
     }
 }
 ```
+
+On constate la présence des deux attribus dans renvoyés par l'[url](http://localhost:8000/recipe/pate-bolognaise/32)
 
 ![01](pic/01.png)
