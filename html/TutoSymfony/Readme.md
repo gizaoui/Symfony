@@ -68,7 +68,7 @@ Cette exception peut automatiquement par l'utilisation d'une *Request* (le secon
 
 Tester en lançant l'[url](http://localhost:8000/?name=World).
 
-<br>
+<hr>
 
 On souhaite récupérer les deux paramètres *pate-bolognaise* et *32* dans l'url de type [http://monsite/**pate-bolognaise**/**32**](http://localhost:8000/recipe/pate-bolognaise/32)
 
