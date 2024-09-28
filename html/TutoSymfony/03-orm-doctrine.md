@@ -133,4 +133,4 @@ Le script doit être vérifié avant sont exécution.
 
 La table a été créée avec les types de champ suivants :
 
-![03](03.png)
+![03](pic/03.png)
