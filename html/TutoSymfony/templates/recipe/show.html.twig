@@ -18,22 +18,7 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Show recipes</h1>
-		<ul>
-			<li><strong>slug :</strong> {{ slug }}</li>
-			<li><strong>id :</strong> {{ id }}</li>
-            <li><strong>firstname :</strong> {{ person.firstname }}</li>
-            <li><strong>lastname :</strong> {{ person.lastname }}</li>
-            <li><strong>login :</strong> {{ person.firstname ~ person.lastname | lower }}</li>
-		</ul>
-
-        <h2>Person</h2>
-        <ul>
-            {% for key, value in person %}
-                <li>{{ key }} : {{ value }} </li>
-            {% endfor %}
-        </ul>
-
-        {{ dump(app.request) }}
+		<h1>{{ recipe.title }}</h1>
+      {{ dump(recipe) }}
 	</div>
 {% endblock %}

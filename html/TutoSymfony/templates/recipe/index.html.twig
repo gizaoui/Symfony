@@ -22,14 +22,11 @@
 		<h1>Recipes</h1>
 		<ul>
 			{% for id, recipe in recipes %}
-				<li>{{ id }} => [{{ recipe.getId() }}, {{ recipe.getTitle() }}]</li>
-				<li><a href="{{ url('recipe.show', {id:recipe.getId(), slug:recipe.getSlug()}) }}">{{ recipe.getTitle() }}</a></li>
-				{% endfor %}
+				<li>
+					<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
+				</li>
+			{% endfor %}
 		</ul>
 
-
-		<ul>
-			<li><a href="{{ url('recipe.show', {id:32, slug:'pate-bolognaise'}) }}">Pate bolognaise</a></li>
-		</ul>
 	</div>
 {% endblock %}

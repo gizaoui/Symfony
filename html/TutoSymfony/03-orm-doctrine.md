@@ -179,6 +179,8 @@ Faire chauffer 3 mn en remuant sans cesse. Servir très chaud', '2024-09-28', '2
 
 ## Récupération des données
 
+### Récupération de toutes les données
+
 Mondifions le fichiers *RecipeController.php*
 
 ```php
@@ -226,7 +228,9 @@ class RecipeController extends AbstractController {
 <h1>Recipes</h1>
 <ul>
 	{% for id, recipe in recipes %}
-	   <li>{{ id }} => [{{ recipe.getId() }}, {{ recipe.getTitle() }}]</li>
+		<li>
+			<a href="{{ url('recipe.show', { id: recipe.getId(), slug: recipe.getSlug() }) }}">{{ recipe.getTitle() }}</a>
+		</li>
 	{% endfor %}
 </ul>
 ```
@@ -239,8 +243,51 @@ Le notation peut-être simplifiée :
 <h1>Recipes</h1>
 <ul>
 	{% for id, recipe in recipes %}
-	   <li>{{ id }} => [{{ recipe.id }}, {{ recipe.title }}]</li>
+	<li>
+		<a href="{{ url('recipe.show', { id: recipe.id, slug: recipe.slug }) }}">{{ recipe.title }}</a>
+	</li>
 	{% endfor %}
 </ul>
 ```
+
+<br>
+
+Les liens sont encore codé "en dur" ...
+
+```php
+#[Route('/recipe/{slug}/{id}', name: 'recipe.show')]
+public function show(string $slug, int $id): Response {
+   return $this->render('recipe/show.html.twig', [
+      'slug' => $slug,
+         'id' => $id,
+         'person' => [
+             'firstname' => 'John',
+             'lastname' => 'DOE'
+         ]
+      ]);
+}
+```
+
+### Récupération des données par *primary key*
+
+
+La sélection d'un recette est obtenue par la page web **TutoSymfony/templates/recipe/index.html.twig** listant l'ensemble des recettes :
+
+```html
+<h1>Recipes</h1>
+<ul>
+	{% for id, recipe in recipes %}
+	<li>
+      <!-- Le 'slug' est innutilisé (supprimé) -->
+		<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
+	</li>
+	{% endfor %}
+</ul>
+```
+
+La page des *Recipes* affiche :
+
+![04](pic/04.png)
+
+
 
