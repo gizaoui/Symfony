@@ -319,8 +319,39 @@ A travers un *dump*.
 ![06](pic/06.png)
 
 
+<br>
+
 ### Récupération des données par le *slug*
 
+La sélection d'un recette est obtenue par la page web **TutoSymfony/templates/recipe/index.html.twig** listant l'ensemble des recettes :
 
+```html
+<h1>Recipes</h1>
+<ul>
+	{% for id, recipe in recipes %}
+	<li>
+		<a href="{{ url('recipe.show', { slug: recipe.slug }) }}">{{ recipe.title }}</a>
+	</li>
+	{% endfor %}
+</ul>
+```
 
+<br>
 
+La sélection des *Recipes* obtenue via des liens.
+
+![05](pic/05.png)
+
+<br>
+
+L'identifiant renvoyé par la page permet de sélectionner une recette afin d'en afficher le détail.
+
+```php
+#[Route('/recipe/{slug}', name: 'recipe.show')]
+public function show(RecipeRepository $recipeRepository, string $slug): Response {
+   return $this->render('recipe/show.html.twig', [
+         // Récupération par le 'slug'
+         'recipe' => $recipeRepository->findOneBy(['slug' => $slug])
+      ]);
+   }
+```
