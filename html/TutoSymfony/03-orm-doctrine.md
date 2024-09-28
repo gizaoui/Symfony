@@ -207,6 +207,7 @@ class RecipeController extends AbstractController {
 	   <li>{{ id }} => [{{ recipe.getId() }}, {{ recipe.getTitle() }}]</li>
 	{% endfor %}
 </ul>
+```
 
 <br>
 
