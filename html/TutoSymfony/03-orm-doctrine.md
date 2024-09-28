@@ -143,7 +143,7 @@ TRUNCATE TABLE Recipe;
 
 INSERT INTO "recipe" ("id", "title", "slug", "content", "created_at", "updated_at", "duration")
 VALUES 
-(1, 'Pate bonognaise', 'pate-bonognaise', 'Étape 1
+(1, 'Pâte bonognaise', 'pate-bonognaise', 'Étape 1
 Épluchez et émincez finement les oignons et l''ail.
 
 Étape 2
@@ -355,3 +355,84 @@ public function show(RecipeRepository $recipeRepository, string $slug): Response
       ]);
    }
 ```
+
+### Récupération des recettes d'une durée inférieur à 10 minutes
+
+Mettre à jour le fichier *TutoSymfony/src/Repository/RecipeRepository.php* en ajoutant la méthode exécutant la requête.
+
+```php
+/**
+ * @param int $duration
+ * @return Recipe[]
+ */
+public function findWithDurationLowerThan(int $duration): array {
+  return $this->createQueryBuilder('r')
+      ->where('r.duration <= :duration')
+      ->setParameter('duration', $duration)
+      ->setMaxResults(30)
+      ->orderBy('r.duration', 'ASC')
+      ->getQuery()
+      ->getResult();
+}
+```
+
+Appeler la requête dans le *controller*.
+
+
+```php
+#[Route('/recipe', name: 'recipe.index')]
+public function index(RecipeRepository $recipeRepository): Response {
+   
+   // Liste des recettes
+   $recipes = $recipeRepository->findWithDurationLowerThan(30);
+
+   return $this->render('recipe/index.html.twig', [
+      'recipes' => $recipes,
+     ]);
+}
+```
+
+<br>
+
+### Sélection de champs individuels
+
+```php
+/**
+ * @return Recipe[]
+ */
+public function findSelect(): array {
+  return $this->createQueryBuilder('r')
+      ->select('r.id', 'r.duration')
+      ->orderBy('r.duration', 'ASC')
+      ->getQuery()
+      ->getResult();
+}
+```
+<br>
+
+![08](pic/08.png)
+
+<br>
+
+
+### Somme des durées de préparation des recettes
+
+Mettre à jour le fichier *TutoSymfony/src/Repository/RecipeRepository.php* en ajoutant la méthode exécutant la requête.
+
+```php
+/**
+ * @return int
+ */
+public function findTotalDuration() {
+   return $this->createQueryBuilder('r')
+      ->select('sum(r.duration) as total')
+      ->getQuery()
+      ->getOneOrNullResult();
+}
+```
+
+<br>
+
+Résultat :
+
+![07](pic/07.png)
