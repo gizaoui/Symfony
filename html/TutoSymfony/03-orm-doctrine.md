@@ -370,22 +370,6 @@ public function findWithDurationLowerThan(int $duration): array {
 }
 ```
 
-Appeler la requête dans le *controller*.
-
-
-```php
-#[Route('/recipe', name: 'recipe.index')]
-public function index(RecipeRepository $recipeRepository): Response {
-   
-   // Liste des recettes
-   $recipes = $recipeRepository->findWithDurationLowerThan(30);
-
-   return $this->render('recipe/index.html.twig', [
-      'recipes' => $recipes,
-     ]);
-}
-```
-
 <br>
 
 ### Sélection de champs individuels
