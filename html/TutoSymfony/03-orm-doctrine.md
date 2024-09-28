@@ -319,6 +319,7 @@ A travers un *dump*.
 ![06](pic/06.png)
 
 
+### Récupération des données par le *slug*
 
 
 

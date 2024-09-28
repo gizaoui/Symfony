@@ -19,12 +19,12 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/recipe/{id}', name: 'recipe.show')]
-    public function show(RecipeRepository $recipeRepository, int $id): Response
+    #[Route('/recipe/{slug}', name: 'recipe.show')]
+    public function show(RecipeRepository $recipeRepository, string $slug): Response
     {
         return $this->render('recipe/show.html.twig', [
-            // Récupération par la 'Primary key'
-            'recipe' => $recipeRepository->find($id)
+            // Récupération par le 'slug'
+            'recipe' => $recipeRepository->findOneBy(['slug' => $slug])
         ]);
     }
 }
