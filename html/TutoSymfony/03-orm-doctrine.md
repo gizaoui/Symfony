@@ -179,6 +179,7 @@ Les traces du *controller* affiche le résultat suivant :
 
 ![04](pic/04.png)
 
+<br>
 
 Que l'on peut directement afficher dans la page web en modifiant :
 
@@ -203,9 +204,20 @@ class RecipeController extends AbstractController {
 <h1>Recipes</h1>
 <ul>
 	{% for id, recipe in recipes %}
+	   <li>{{ id }} => [{{ recipe.getId() }}, {{ recipe.getTitle() }}]</li>
+	{% endfor %}
+</ul>
+
+<br>
+
+Le notation peut-être simplifiée :
+
+```html
+<h1>Recipes</h1>
+<ul>
+	{% for id, recipe in recipes %}
 	   <li>{{ id }} => [{{ recipe.id }}, {{ recipe.title }}]</li>
 	{% endfor %}
 </ul>
 ```
-
 
