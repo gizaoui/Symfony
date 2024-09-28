@@ -68,7 +68,7 @@ Le *model* et le *reposirory*  de *Recipe* définis sous :
 #### **content**
 
 ```bash
-Add another property? Enter the property name (or press <return> to stop adding fields):
+ New property name (press <return> to stop adding fields):
  > content
 
  Field type (enter ? to see all types) [string]:
@@ -81,7 +81,7 @@ Add another property? Enter the property name (or press <return> to stop adding 
 #### **createdAt**
 
 ```bash
- Add another property? Enter the property name (or press <return> to stop adding fields):
+ New property name (press <return> to stop adding fields):
  > createdAt
 
  Field type (enter ? to see all types) [datetime_immutable]:
@@ -94,7 +94,7 @@ Add another property? Enter the property name (or press <return> to stop adding 
 #### **updatedAt**
 
 ```bash
- Add another property? Enter the property name (or press <return> to stop adding fields):
+ New property name (press <return> to stop adding fields):
  > updatedAt
 
  Field type (enter ? to see all types) [datetime_immutable]:
