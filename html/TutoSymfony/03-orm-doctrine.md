@@ -122,9 +122,9 @@ Add another property? Enter the property name (or press <return> to stop adding 
 
 #### Script de création
 
-- Création du fichiers de création des tables &nbsp;&#8640;&nbsp; `php bin/console make:migration`
+- Fichiers de création des tables &nbsp;&#8640;&nbsp; `php bin/console make:migration`
 
-Le script doit être vérifié avant sont exécution.
+Le script *TutoSymfony/migrations/VersionYYYYMMDDXXXXXX.php* doit être vérifié avant sont exécution.
 
 #### Création sous *Postgres*
 
