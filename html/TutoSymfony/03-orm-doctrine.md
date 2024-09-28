@@ -142,7 +142,8 @@ La table a été créée avec les types de champ suivants :
 TRUNCATE TABLE Recipe;
 
 INSERT INTO "recipe" ("id", "title", "slug", "content", "created_at", "updated_at", "duration")
-VALUES (1, 'Pate bonognaise', 'pate-bonognaise', 'Étape 1
+VALUES 
+(1, 'Pate bonognaise', 'pate-bonognaise', 'Étape 1
 Épluchez et émincez finement les oignons et l''ail.
 
 Étape 2
@@ -152,7 +153,28 @@ Faites chauffer l''huile d''olive dans une poêle sur feu vif. Quand l’huile d
 Incorporez les tomates pelées, les branches de thym et la feuille de laurier. Salez et poivrez selon vos goûts, ajoutez le sucre, puis mélangez. Baissez sur feu doux et laissez mijoter pendant 10 min environ, en remuant régulièrement.
 
 Étape 4
-Pendant ce temps, portez à ébullition un grand volume d’eau salée dans une casserole sur feu vif. Dès l’ébullition, plongez les spaghettis dans l’eau bouillante et laissez-les cuire en suivant les instructions du paquet ou jusqu’à ce qu’ils soient al dente. Lorsque les spaghettis sont cuits, égouttez-les dans une passoire et réservez-les au chaud.', '2024-09-28', '2024-09-28', '20');
+Pendant ce temps, portez à ébullition un grand volume d’eau salée dans une casserole sur feu vif. Dès l’ébullition, plongez les spaghettis dans l’eau bouillante et laissez-les cuire en suivant les instructions du paquet ou jusqu’à ce qu’ils soient al dente. Lorsque les spaghettis sont cuits, égouttez-les dans une passoire et réservez-les au chaud.', '2024-09-28', '2024-09-28', '20'),
+(2, 'Riz contonais', 'pate-bonognaise', 'Étape 1
+
+Faire cuire le riz et le rincer à l''eau froide.
+
+Étape 2
+
+Couper le jambon en dés, émincer finement les oignons. Mettre à chauffer 1 cuillère d''huile dans une poêle et faire revenir l''oignon avec les petits pois (3 mn). Verser le mélange dans un plat.
+
+Étape 3
+Faire une omelette et la couper en lanières.
+
+Étape 4
+
+Mettre à chauffer 1 cuillère d''huile et faire revenir 1 mn les crevettes.
+
+Étape 5
+
+Ajouter le riz, petits pois, oignons, jambon, omelette. Saler et poivrer.
+
+Étape 6
+Faire chauffer 3 mn en remuant sans cesse. Servir très chaud', '2024-09-28', '2024-09-28', '15');
 ```
 
 ## Récupération des données

@@ -23,7 +23,8 @@
 		<ul>
 			{% for id, recipe in recipes %}
 				<li>{{ id }} => [{{ recipe.getId() }}, {{ recipe.getTitle() }}]</li>
-			{% endfor %}
+				<li><a href="{{ url('recipe.show', {id:recipe.getId(), slug:recipe.getSlug()}) }}">{{ recipe.getTitle() }}</a></li>
+				{% endfor %}
 		</ul>
 
 
