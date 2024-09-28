@@ -287,7 +287,7 @@ La sélection d'un recette est obtenue par la page web **TutoSymfony/templates/r
 
 La page des *Recipes* affiche :
 
-![04](pic/04.png)
+![05](pic/05.png)
 
 
 
