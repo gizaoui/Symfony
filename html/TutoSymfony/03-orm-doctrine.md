@@ -285,7 +285,7 @@ La sélection d'un recette est obtenue par la page web **TutoSymfony/templates/r
 </ul>
 ```
 
-La page des *Recipes* affiche :
+La sélection des *Recipes* obtenue via des liens.
 
 ![05](pic/05.png)
 
