@@ -178,3 +178,34 @@ class RecipeController extends AbstractController
 Les traces du *controller* affiche le résultat suivant :
 
 ![04](pic/04.png)
+
+
+Que l'on peut directement afficher dans la page web en modifiant :
+
+- Le *controller*
+
+```php
+class RecipeController extends AbstractController {
+    #[Route('/recipe', name: 'recipe.index')]
+    public function index(RecipeRepository $recipeRepository): Response {
+        $recipes = $recipeRepository->findAll();
+        return $this->render('recipe/index.html.twig', [
+            'recipes' => $recipes,
+        ]);
+    }
+    ...
+}
+```
+
+- la page web *TutoSymfony/templates/recipe/index.html.twig*
+
+```html
+<h1>Recipes</h1>
+<ul>
+	{% for id, recipe in recipes %}
+	   <li>{{ id }} => [{{ recipe.id }}, {{ recipe.title }}]</li>
+	{% endfor %}
+</ul>
+```
+
+

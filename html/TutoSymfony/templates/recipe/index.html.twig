@@ -18,7 +18,15 @@
 	</style>
 
 	<div class="example-wrapper">
-		<h1>Hello "{{ controller_name }}" ✅</h1>
+
+		<h1>Recipes</h1>
+		<ul>
+			{% for id, recipe in recipes %}
+				<li>{{ id }} => [{{ recipe.id }}, {{ recipe.title }}]</li>
+			{% endfor %}
+		</ul>
+
+
 		<ul>
 			<li><a href="{{ url('recipe.show', {id:32, slug:'pate-bolognaise'}) }}">Pate bolognaise</a></li>
 		</ul>
