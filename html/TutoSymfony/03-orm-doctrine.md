@@ -291,5 +291,35 @@ La sélection des *Recipes* obtenue via des liens.
 
 ![05](pic/05.png)
 
+<br>
+
+L'identifiant renvoyé par la page permet de sélectionner une recette afin d'en afficher le détail.
+
+```php
+#[Route('/recipe/{id}', name: 'recipe.show')]
+public function show(RecipeRepository $recipeRepository, int $id): Response {
+   return $this->render('recipe/show.html.twig', [
+      // Récupération par la 'Primary key'
+      'recipe' => $recipeRepository->find($id)
+      ]);
+}
+```
+
+Le contenu de la recette est affiché dans la page *TutoSymfony/templates/recipe/show.html.twig*.
+
+```html
+<div class="example-wrapper">
+	<h1>{{ recipe.title }}</h1>
+   {{ dump(recipe) }}
+</div>
+```
+
+A travers un *dump*.
+
+![06](pic/06.png)
+
+
+
+
 
 
