@@ -338,12 +338,6 @@ La sélection d'un recette est obtenue par la page web **TutoSymfony/templates/r
 
 <br>
 
-La sélection des *Recipes* obtenue via des liens.
-
-![05](pic/05.png)
-
-<br>
-
 L'identifiant renvoyé par la page permet de sélectionner une recette afin d'en afficher le détail.
 
 ```php
