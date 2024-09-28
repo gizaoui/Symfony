@@ -134,3 +134,47 @@ Le script *TutoSymfony/migrations/**VersionYYYYMMDDXXXXXX.php*** doit être vér
 La table a été créée avec les types de champ suivants :
 
 ![03](pic/03.png)
+
+
+## Données de test
+
+```sql
+TRUNCATE TABLE Recipe;
+
+INSERT INTO "recipe" ("id", "title", "slug", "content", "created_at", "updated_at", "duration")
+VALUES (1, 'Pate bonognaise', 'pate-bonognaise', 'Étape 1
+Épluchez et émincez finement les oignons et l''ail.
+
+Étape 2
+Faites chauffer l''huile d''olive dans une poêle sur feu vif. Quand l’huile d’olive est bien chaude, déposez les oignons et l’ail émincés dans la poêle et faites-les revenir pendant 3 min, en remuant bien, jusqu''à ce que les oignons soient bien translucides. Ajoutez ensuite la viande de bœuf hachée, puis poursuivez la cuisson pendant 3 à 4 min sans cesser de mélanger, jusqu''à ce qu''elle ne soit plus rosée.
+
+Étape 3
+Incorporez les tomates pelées, les branches de thym et la feuille de laurier. Salez et poivrez selon vos goûts, ajoutez le sucre, puis mélangez. Baissez sur feu doux et laissez mijoter pendant 10 min environ, en remuant régulièrement.
+
+Étape 4
+Pendant ce temps, portez à ébullition un grand volume d’eau salée dans une casserole sur feu vif. Dès l’ébullition, plongez les spaghettis dans l’eau bouillante et laissez-les cuire en suivant les instructions du paquet ou jusqu’à ce qu’ils soient al dente. Lorsque les spaghettis sont cuits, égouttez-les dans une passoire et réservez-les au chaud.', '2024-09-28', '2024-09-28', '20');
+```
+
+## Récupération des données
+
+Mondifions le fichiers *RecipeController.php*
+
+```php
+class RecipeController extends AbstractController
+{
+    #[Route('/recipe', name: 'recipe.index')]
+    public function index(RecipeRepository $recipeRepository): Response {
+
+      // Récupération des toutes les données de la table 
+      $recipes = $recipeRepository->findAll();
+      // Affichage des traces
+      dd($recipes);
+      ...
+    }
+    ...
+}
+```
+
+Les traces du *controller* affiche le résultat suivant :
+
+![04](pic/04.png)
