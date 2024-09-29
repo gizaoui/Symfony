@@ -47,7 +47,7 @@ class RecipeController extends AbstractController
 
         // Information obtenues par le 'handleRequest'
         // précédement appelé.
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setUpdatedAt(new \DateTimeImmutable());
             $em->flush();
             $this->addFlash('success', 'La recette a bien été modifiée');
@@ -64,7 +64,7 @@ class RecipeController extends AbstractController
 
     #[Route('/recipe/create', name: 'recipe.create')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
-    public function create( Request $request, EntityManagerInterface $em): Response
+    public function create(Request $request, EntityManagerInterface $em): Response
     {
         // Création d'un objet Recipe permetant 
         // l'intégration d'un nouvel enregistrement.
@@ -81,7 +81,7 @@ class RecipeController extends AbstractController
 
         // Information obtenues par le 'handleRequest'
         // précédement appelé.
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $recipe->setCreatedAt(new \DateTimeImmutable());
             $recipe->setUpdatedAt(new \DateTimeImmutable());
             $em->persist($recipe);
@@ -97,5 +97,13 @@ class RecipeController extends AbstractController
         ]);
     }
 
-
+    #[Route('/recipe/delete/{id}', name: 'recipe.delete', methods: ['DELETE'])]
+    // Récupération par la 'Primary key' dans l'instance '$recipe'
+    public function delete(Recipe $recipe, EntityManagerInterface $em): Response
+    {
+        $em->remove($recipe);
+        $em->flush();
+        $this->addFlash('success', 'La recette a été supprimée');
+        return $this->redirectToRoute('recipe.index');
+    }
 }

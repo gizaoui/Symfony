@@ -295,7 +295,7 @@ Ce qui permet d'obtenir le rendu suivant :
 ## Création d'une nouvelle recette
 
 
-Modifier le *controller* pour prendre en charge l'ajout d'un nouvel enregistrement'.
+Modifier le *controller* pour prendre en charge l'ajout d'une nouvel recette.
 
 ```php
 #[Route('/recipe/create', name: 'recipe.create')]
@@ -395,5 +395,83 @@ class RecipeType extends AbstractType {
 L'utlisation de la balise `{{ form(recipeForm) }}` dans page web impose la suppression des champs *createdAt* et *updatedAt* du formulaire.
 
 ![18](pic/18.png)
+
+<br>
+
+## Suppression d'une recette
+
+Modifier le *controller* pour prendre en charge la suppression d'une recette.
+
+```php
+#[Route('/recipe/delete/{id}', name: 'recipe.delete', methods: ['DELETE'])]
+// Récupération par la 'Primary key' dans l'instance '$recipe'
+public function delete(Recipe $recipe, EntityManagerInterface $em): Response {
+   $em->remove($recipe);
+   $em->flush();
+   $this->addFlash('success', 'La recette a bien été supprimée');
+   return $this->redirectToRoute('recipe.index');
+}
+```
+
+<br>
+
+Mettre à jour le fichier de configuration *TutoSymfony/config/packages/**framework.yaml*** 
+afin d'autoriser l'utilisation de la méthode **DELETE** dans le *controller* 
+&nbsp;&#8640;&nbsp; `#[Route('/recipe/delete/{id}', name: 'recipe.delete', methods: ['DELETE'])]` 
+
+```yaml
+framework:
+    secret: '%env(APP_SECRET)%'
+    session: true
+    # Autorise l'utilisation de la methods 'DELETE' par le controller :
+    http_method_override: true
+```
+
+<br>
+
+La suppression d'une recette via un ***SUBMIT*** permet l'utilisation de la méthode ***DELETE*** via un champ caché et empêche l'utilisation d'un lien.<br>
+:warning: L'action dans la balise `<form>` est configuré avec un ***post***.
+
+```html
+<h1 class="mb-3">Recipes</h1>
+<!-- Nouvelle recette -->
+<p class="mb-1">
+	<a class="btn btn-primary btn-sm" href="{{ path("recipe.create") }}">Nouvelle recette</a>
+</p>
+<!-- Liste des recettes -->
+<table class="table">
+	<tbody>
+		<tr>
+			<th>Titre</th>
+			<th>Action</th>
+		</tr>
+	</tbody>
+	{% for id, recipe in recipes %}
+		<tr>
+			<td>
+            <!-- Visualisation d'une recette -->
+				<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
+			</td>
+			<td>
+				<div class="d-flex gap-1">
+               <!-- Edition d'une recette -->
+					<a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a>
+               <!--  Suppression d'une recette -->
+					<form action="{{ path("recipe.delete", {id: recipe.id }) }}" method="post">
+						<input type="hidden" name="_method" value="DELETE">
+						<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+					</form>
+				</div>
+			</td>
+		</tr>
+	{% endfor %}
+</table>
+```
+
+<br>
+
+On peut à présent consulter, modifier, ajouter et supprimer une recette.
+
+![19](pic/19.png)
 
 <br>

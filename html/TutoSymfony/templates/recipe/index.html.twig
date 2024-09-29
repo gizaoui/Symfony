@@ -6,10 +6,10 @@
 {% block body %}
 
 
-	<h1>Recipes</h1>
+	<h1 class="mb-3">Recipes</h1>
 
-	<p>
-		<a class="btn btn-primary" href="{{ path("recipe.create") }}">Nouvelle recette</a>
+	<p class="mb-1">
+		<a class="btn btn-primary btn-sm" href="{{ path("recipe.create") }}">Nouvelle recette</a>
 	</p>
 
 	<table class="table">
@@ -21,11 +21,23 @@
 		</tbody>
 		{% for id, recipe in recipes %}
 			<tr>
-				<td><a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a></td>
-				<td><a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a></td>
+				<td>
+					<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
+				</td>
+				<td>
+					<div class="d-flex gap-1">
+						<a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a>
+						<form
+							action="{{ path("recipe.delete", {id: recipe.id }) }}" method="post">
+							<!-- màj 'http_method_override: true' dans framework.yaml -->
+							<input type="hidden" name="_method" value="DELETE">
+							<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+						</form>
+					</div>
+				</td>
 			</tr>
 		{% endfor %}
 	</table>
-	
+
 
 {% endblock %}
