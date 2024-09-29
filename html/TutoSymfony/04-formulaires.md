@@ -463,6 +463,7 @@ Les traces renvoyées par le `dd($data)` sont les suivantes :
 
 ![21](pic/21.png)
 
+
 ### Mise à jour automatique des champs *createdAt* et *updatedAt*
 
 Les évènements nous permettent de déporter la mise à jour des champs ***createdAt*** et ***updatedAt*** du *controller* vers le formulaire.
@@ -504,6 +505,15 @@ Les traces renvoyées par le `dd($data)` sont les suivantes :
 
 
 <br>
+
+On peut supprimer les mise à jour des dates au niveau du *controller*.
+
+```php
+$recipe->setCreatedAt(new \DateTimeImmutable());
+$recipe->setUpdatedAt(new \DateTimeImmutable());
+```
+<br>
+
 
 ## Suppression d'une recette
 
