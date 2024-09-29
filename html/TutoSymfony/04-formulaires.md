@@ -461,7 +461,6 @@ class RecipeType extends AbstractType {
    ...
 }
 ```
-<br>
 
 Les traces renvoyées par le `dd($data)` sont les suivantes :
 
