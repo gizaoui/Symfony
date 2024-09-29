@@ -465,6 +465,7 @@ Les traces renvoyées par le `dd($data)` sont les suivantes :
 
 <br>
 
+### Mise à jour automatique des champs *createdAt* et *updatedAt*
 
 Les évènements nous permettent de déporter la mise à jour des champs ***createdAt*** et ***updatedAt*** du *controller* vers le formulaire.
 
