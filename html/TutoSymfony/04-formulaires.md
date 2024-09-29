@@ -346,3 +346,54 @@ La page html *TutoSymfony/templates/recipe/**create.html.twig*** permettra la cr
 Pour le moment les dates et le *slug* doivent être renseignées.
 
 ![17](pic/17.png)
+
+<br>
+
+On souhaite ne plus avoir à saisir les champs *createdAt* et *updatedAt* lors de la création d'un nouvel enregistrement.
+
+```php
+#[Route('/recipe/create', name: 'recipe.create')]
+public function create( Request $request, 
+                        EntityManagerInterface $em): Response {
+   // Création d'un objet Recipe permetant 
+   // l'intégration d'un nouvel enregistrement.
+   $recipe = new Recipe();
+   ...
+
+   if($form->isSubmitted() && $form->isValid()) {
+      // Mise à jour des dates via la nouvel instance '$recipe'
+      $recipe->setCreatedAt(new \DateTimeImmutable());
+      $recipe->setUpdatedAt(new \DateTimeImmutable());
+      ...
+   }
+   ...
+}
+```
+
+On effectuera la même opération pour la mise à jour.
+
+<br>
+
+On supprime les champs *createdAt* et *updatedAt* du formulaire afin de les supprimer de la page web.
+
+```php
+class RecipeType extends AbstractType {
+    public function buildForm(FormBuilderInterface $builder, array $options): void  {
+      $builder
+         ->add('title', TextType::class, ['label' => 'Titre'])
+         ->add('slug', TextType::class, ['label' => 'Path'])
+         ->add('content', TextareaType::class, ['label' => 'Contenu'])
+         ->add('duration', IntegerType::class)
+         ->add('save', SubmitType::class, ['label' => 'Envoyer']);
+   }
+   ...
+}
+```
+
+<br>
+
+L'utlisation de la balise `{{ form(recipeForm) }}` dans page web impose la suppression des champs *createdAt* et *updatedAt* du formulaire.
+
+![18](pic/18.png)
+
+<br>

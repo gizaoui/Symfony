@@ -20,8 +20,6 @@ class RecipeType extends AbstractType
             ->add('title', TextType::class, ['label' => 'Titre'])
             ->add('slug', TextType::class, ['label' => 'Path'])
             ->add('content', TextareaType::class, ['label' => 'Contenu'])
-            ->add('createdAt', DateTimeType::class )
-            ->add('updatedAt', DateTimeType::class )
             ->add('duration', IntegerType::class)
             ->add('save', SubmitType::class, ['label' => 'Envoyer']);
     }
