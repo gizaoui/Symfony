@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Recipe;
 use App\Form\RecipeType;
+use Doctrine\ORM\EntityManagerInterface;
 
 class RecipeController extends AbstractController
 {
@@ -32,11 +33,24 @@ class RecipeController extends AbstractController
 
     #[Route('/recipe/edit/{id}', name: 'recipe.edit')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
-    public function edit(Recipe $recipe): Response
+    public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em): Response
     {
         // Création de l'instance du formulaire initialisée 
         // avec l'injection des données dans l'instance '$recipe'.
         $form = $this->createForm(RecipeType::class, $recipe);
+
+        // Récupère les données mise à jour de la page web.
+        // pour mettre à jour celle de l'instance '$recipe'
+        // L'absence de données dans la $request au premier appel
+        // n'écrase pas celles présentes dans l'instance '$recipe'.
+        $form->handleRequest($request);
+
+        // Information obtenues par le 'handleRequest'
+        // précédement appelé.
+        if($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            return $this->redirectToRoute('recipe.index');
+        }
 
         return $this->render('recipe/edit.html.twig', [
             'recipeData' => $recipe,

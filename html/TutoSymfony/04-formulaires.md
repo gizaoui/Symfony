@@ -37,7 +37,7 @@ class RecipeType extends AbstractType {
 }
 ```
 
-<br>
+## Affichage du formulaire
 
 L'intégration du formulaire dans la nouvelle page web *TutoSymfony/templates/recipe/**edit.html.twig*** est obtenu via le *controller*.
 :warning: Pour le moment, il ne permet pas d'effectuer de mise à jour.
@@ -144,3 +144,70 @@ Il suffira de cliquer sur le bouton *Editer*
 
 ![10](pic/10.png)
 
+
+## Mise à jour de la base de données
+
+Mettre à jour le formulaire en y ajoutant un bouton ***Submit*** et le typage des données
+
+```php
+class RecipeType extends AbstractType {
+   public function buildForm(FormBuilderInterface $builder, array $options): void {
+     $builder
+         ->add('title', TextType::class, ['label' => 'Titre'])
+         ->add('slug', TextType::class, ['label' => 'Path'])
+         ->add('content', TextareaType::class, ['label' => 'Contenu'])
+         ->add('createdAt', DateTimeType::class )
+         ->add('updatedAt', DateTimeType::class )
+         ->add('duration', IntegerType::class)
+         ->add('save', SubmitType::class, ['label' => 'Envoyer']);
+   }
+   ...
+}
+```
+<br>
+
+Le bouton a été ajouté et le titre modifié afin de tester la mise à jour
+
+![13](pic/13.png)
+
+
+<br>
+
+Modifier le *controller* pour predre en charge la mise à jour.
+
+```php
+#[Route('/recipe/edit/{id}', name: 'recipe.edit')]
+// Récupération par la 'Primary key' dans l'instance '$recipe'
+public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em): Response  {
+
+   // Création de l'instance du formulaire initialisée 
+   // avec l'injection des données dans l'instance '$recipe'.
+   $form = $this->createForm(RecipeType::class, $recipe);
+
+   // Récupère les données mise à jour de la page web.
+   // pour mettre à jour celle de l'instance '$recipe'
+   // L'absence de données dans la $request au premier appel
+   // n'écrase pas celles présentes dans l'instance '$recipe'.
+   $form->handleRequest($request);
+
+   // Information obtenues par le 'handleRequest'
+   // précédement appelé.
+   if($form->isSubmitted() && $form->isValid()) {
+      $em->flush();
+
+      // Redirection sur la liste des recettes.
+      return $this->redirectToRoute('recipe.index');
+   }
+
+   return $this->render('recipe/edit.html.twig', [
+      'recipeData' => $recipe,
+      'recipeForm' => $form
+     ]);
+}
+```
+
+<br>
+
+La mise à jour a correctement été effectuée.
+
+![14](pic/14.png)
