@@ -91,7 +91,7 @@ Le rendu est à présent le suivant :
 
 <br>
 
-La mise en page peut encore être améliorée en distinguant l'ensemble des champs.
+La mise en page peut encore être améliorée en distinguant l'ensemble des champs du fichier *TutoSymfony/templates/recipe/**edit.html.twig***.
 
 ```html
 <h1>{{ recipeData.title }}</h1>
@@ -369,8 +369,14 @@ public function create( Request $request,
    ...
 }
 ```
+<br>
 
 On effectuera la même opération pour la mise à jour.
+
+```php
+$recipe->setCreatedAt(new \DateTimeImmutable());
+```
+
 
 <br>
 
@@ -389,6 +395,56 @@ class RecipeType extends AbstractType {
    ...
 }
 ```
+
+<br>
+
+:warning: Les champ *createdAt* et *updatedAt* dans le formulaire. Ne pas oublier de les supprimer du fichier *TutoSymfony/templates/recipe/**edit.html.twig***.
+
+```html
+<h1>Mise à jour {{ recipeData.title }}</h1>
+{{ form_start(recipeForm) }}
+<div class="d-flex gap-2">
+	{{ form_row(recipeForm.title) }}
+	{{ form_row(recipeForm.slug) }}
+</div>
+<div class="d-flex flex-column">
+	{{ form_row(recipeForm.content) }}
+	{{ form_row(recipeForm.duration) }}
+</div>
+{{ form_end(recipeForm) }}
+```
+
+<br>
+
+![20](pic/20.png)
+
+<br>
+
+
+
+### Mise à jour automatique du champ *slug/Path*
+
+Le mise à jour du champs *slug* doit être effectué à partir du champ *title* avant la soumission du formulaire. Ce traitement peut-être obtenue par l'utilisation d'un évènement au niveau du formulaire.
+
+
+```php
+class RecipeType extends AbstractType {
+    public function buildForm(FormBuilderInterface $builder, array $options): void  {
+      $builder
+         ->add('title', TextType::class, ['label' => 'Titre'])
+         ->add('slug', TextType::class, ['label' => 'Path'])
+         ->add('content', TextareaType::class, ['label' => 'Contenu'])
+         ->add('duration', IntegerType::class)
+         ->add('save', SubmitType::class, ['label' => 'Envoyer'])
+         ->addEventListener(FormEvents::PRE_SUBMIT, $this->factory->autoSlug('title'));
+   }
+   ...
+}
+```
+
+
+
+
 
 <br>
 
@@ -458,7 +514,8 @@ La suppression d'une recette via un ***SUBMIT*** permet l'utilisation de la mét
 					<a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a>
                <!--  Suppression d'une recette -->
 					<form action="{{ path("recipe.delete", {id: recipe.id }) }}" method="post">
-						<input type="hidden" name="_method" value="DELETE">
+						<!-- Simulation d'une requête DELETE -->
+                  <input type="hidden" name="_method" value="DELETE">
 						<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
 					</form>
 				</div>
