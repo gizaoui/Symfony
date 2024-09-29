@@ -398,7 +398,7 @@ class RecipeType extends AbstractType {
 
 <br>
 
-:warning: Les champ *createdAt* et *updatedAt* dans le formulaire. Ne pas oublier de les supprimer du fichier *TutoSymfony/templates/recipe/**edit.html.twig***.
+:warning: Les champ ***createdAt*** et ***updatedAt*** dans le formulaire. Ne pas oublier de les supprimer du fichier *TutoSymfony/templates/recipe/**edit.html.twig***.
 
 ```html
 <h1>Mise à jour {{ recipeData.title }}</h1>
@@ -416,7 +416,7 @@ class RecipeType extends AbstractType {
 
 <br>
 
-Il ne reste que les quatre champs.
+Il ne reste que les quatre champs au niveau de l'édition de la recette.
 
 ![20](pic/20.png)
 
