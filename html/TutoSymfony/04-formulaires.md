@@ -378,6 +378,8 @@ $recipe->setCreatedAt(new \DateTimeImmutable());
 ```
 
 
+
+
 <br>
 
 On supprime les champs *createdAt* et *updatedAt* du formulaire afin de les supprimer de la page web.
@@ -426,27 +428,32 @@ Il ne reste que les quatre champs au niveau de l'édition de la recette.
 
 ### Mise à jour automatique du champ *slug/Path*
 
-Le mise à jour du champs *slug* doit être effectué à partir du champ *title* avant la soumission du formulaire. Ce traitement peut-être obtenue par l'utilisation d'un évènement au niveau du formulaire.
-
+Le mise à jour du champ *slug* doit être effectué à partir du champ *title* avant la soumission du formulaire. Ce traitement peut-être obtenue par l'utilisation d'un évènement au niveau du formulaire.
+Le champ *slug* étant automatiquement mis à jour, ajouter l'option `'required' => false`;
 
 ```php
 class RecipeType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void  {
       $builder
          ->add('title', TextType::class, ['label' => 'Titre'])
-         ->add('slug', TextType::class, ['label' => 'Path'])
+         ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
          ->add('content', TextareaType::class, ['label' => 'Contenu'])
          ->add('duration', IntegerType::class)
          ->add('save', SubmitType::class, ['label' => 'Envoyer'])
          ->addEventListener(FormEvents::PRE_SUBMIT, $this->factory->autoSlug('title'));
    }
+
+   function autoSlug(PreSubmitEvent $event): void {
+      $data = $event->getData();
+      if (empty($data['slug'])) {
+         $slugger = new AsciiSlugger();
+         $data['slug'] = strtolower($slugger->slug($data['title']));
+         $event->setData($data);
+      }
+   }
    ...
 }
 ```
-
-
-
-
 
 <br>
 
