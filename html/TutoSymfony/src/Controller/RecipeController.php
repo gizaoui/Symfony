@@ -49,6 +49,7 @@ class RecipeController extends AbstractController
         // précédement appelé.
         if($form->isSubmitted() && $form->isValid()) {
             $em->flush();
+            $this->addFlash('success', 'La recette a bien été modifié');
             return $this->redirectToRoute('recipe.index');
         }
 

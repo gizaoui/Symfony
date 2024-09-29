@@ -196,7 +196,7 @@ public function edit(Recipe $recipe,
    if($form->isSubmitted() && $form->isValid()) {
       // Mise à jour de la base de données.
       $em->flush();
-      // Redirection sur la liste des recettes.
+      // Redirection vers la liste des recettes.
       return $this->redirectToRoute('recipe.index');
    }
 
@@ -212,3 +212,46 @@ public function edit(Recipe $recipe,
 La mise à jour a correctement été effectuée.
 
 ![14](pic/14.png)
+
+<br>
+
+## Message *flash*
+
+On souhaitre retourner l'information de le transaction de mise à jour dans une boîte de message.
+
+
+```php
+#[Route('/recipe/edit/{id}', name: 'recipe.edit')]
+public function edit(Recipe $recipe, 
+                     Request $request, 
+                     EntityManagerInterface $em): Response  {
+   ...
+   if($form->isSubmitted() && $form->isValid()) {
+      $em->flush();
+      // Envoie du message dans variable globale 'app'
+      $this->addFlash('success', 'La recette a bien été modifié');
+      return $this->redirectToRoute('recipe.index');
+   }
+   ...
+}
+```
+
+<br>
+
+
+Le message est récupéré dans l'objet *app.flashes* dans le fichier html commun *TutoSymfony/templates/**base.html.twig*** suite à la mise à jour du titre.
+
+```html
+<div class="container my-4">
+   <!-- Récupération du message 'Flash' -->
+	{{ dump(app.flashes) }}
+	<!-- Fichiers incluant des 'base.html.twig' -->
+	{% block body %}{% endblock %}
+</div>
+```
+
+<br>
+
+Le message apparait à travers deux tableaux imbriqués.
+
+![15](pic/15.png)
