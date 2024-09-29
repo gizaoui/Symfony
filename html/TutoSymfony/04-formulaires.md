@@ -424,6 +424,10 @@ Il ne reste que les quatre champs au niveau de l'édition de la recette.
 
 <br>
 
+Les évènements nous permettent de déporter la mise à jour des champs ***createdAt*** et ***updatedAt*** du *controller* vers le formulaire.
+
+
+
 
 
 ### Mise à jour automatique du champ *slug/Path*
@@ -445,6 +449,9 @@ class RecipeType extends AbstractType {
 
    function autoSlug(PreSubmitEvent $event): void {
       $data = $event->getData();
+      // dd($data);
+      // La mise à jour du champ 'slug' avec le champ 'title' 
+      // est effectués via un tableau (cf. trace ci-dessous)
       if (empty($data['slug'])) {
          $slugger = new AsciiSlugger();
          $data['slug'] = strtolower($slugger->slug($data['title']));
@@ -454,12 +461,20 @@ class RecipeType extends AbstractType {
    ...
 }
 ```
+<br>
+
+Les traces renvoyées par le `dd($data)` sont les suivantes :
+
+![21](pic/21.png)
 
 <br>
 
 L'utlisation de la balise `{{ form(recipeForm) }}` dans page web impose la suppression des champs *createdAt* et *updatedAt* du formulaire.
 
 ![18](pic/18.png)
+
+<br>
+
 
 <br>
 
