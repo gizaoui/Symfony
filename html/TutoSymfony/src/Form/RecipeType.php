@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\FormEvents;
@@ -33,9 +32,6 @@ class RecipeType extends AbstractType
     function autoSlug(PreSubmitEvent $event): void
     {
         $data = $event->getData();
-
-        dd($data);
-
         if (empty($data['slug'])) {
             $slugger = new AsciiSlugger();
             $data['slug'] = strtolower($slugger->slug($data['title']));
@@ -44,16 +40,21 @@ class RecipeType extends AbstractType
     }
 
 
-    function attachTimestamps(PostSubmitEvent $event)
+    function attachTimestamps(PostSubmitEvent $event): void
     {
         $data = $event->getData();
-        $data->setUpdateAt(new \DateTimeImmutable());
-        // Nouvelle enregistrement
-        if (! $data->getId()) {
-            $data->setCreatedAt(new \DateTimeImmutable());
+
+        dd($data);
+
+        if($data instanceof Recipe) {
+            $data->setUpdatedAt(new \DateTimeImmutable());
+            // Nouvelle enregistrement
+            if (!$data->getId()) {
+                $data->setCreatedAt(new \DateTimeImmutable());
+            }
         }
-        $event->setData($data);
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
