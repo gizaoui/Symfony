@@ -39,6 +39,7 @@ class RecipeType extends AbstractType {
 <br>
 
 L'intégration du formulaire dans la nouvelle page web *TutoSymfony/templates/recipe/**edit.html.twig*** est obtenu via le *controller*.
+:warning: Pour le moment, il ne permet pas d'effectuer de mise à jour.
 
 ```php
 #[Route('/recipe/edit/{id}', name: 'recipe.edit')]
@@ -58,7 +59,8 @@ return $this->render('recipe/edit.html.twig', [
 
 <br>
 
-Le formulaire est affiché sur la web *TutoSymfony/templates/recipe/**edit.html.twig*** via la balise *form*.
+Le formulaire est affiché sur la web *TutoSymfony/templates/recipe/**edit.html.twig*** via la balise *form*.<br>
+
 
 ```html
 <h1>{{ recipeData.title }}</h1> <!-- Données récupérées de la base -->
@@ -72,7 +74,23 @@ On obtient le rendu disgracieux suivant :
 
 <br>
 
-L'édition d'une recette peut être facilité en modifiant la page web *TutoSymfony/templates/recipe/index.html.twig*.
+Cela peut-être corrigé par la mise à jour du fichier *TutoSymfony/config/packages/**twig.yaml***
+
+```yaml
+twig:
+    file_name_pattern: '*.twig'
+    form_themes: ['bootstrap_5_layout.html.twig']
+```
+
+<br>
+
+Le rendu est à présent le suivant :
+
+![11](pic/11.png)
+
+<br>
+
+L'édition d'une recette peut être facilité en modifiant la page web *TutoSymfony/templates/recipe/**index.html.twig***.
 
 ```html	<h1>Recipes</h1>
 <table class="table">
