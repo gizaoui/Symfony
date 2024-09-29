@@ -5,9 +5,21 @@
 
 {% block body %}
 
-	<div class="example-wrapper">
-		<h1>{{ recipeData.title }}</h1>
-		{{ form(recipeForm)}}
+	<h1>{{ recipeData.title }}</h1>
+	{{ form_start(recipeForm) }}
+	<div class="d-flex gap-2">
+		{{ form_row(recipeForm.title) }}
+		{{ form_row(recipeForm.slug) }}
 	</div>
+	<div class="d-flex flex-column">
+		{{ form_row(recipeForm.content) }}
+		{{ form_row(recipeForm.duration) }}
+	</div>
+	<div class="d-flex gap-2">
+		{{ form_row(recipeForm.createdAt) }}
+		{{ form_row(recipeForm.updatedAt) }}
+	</div>
+	{{ form_end(recipeForm) }}
+
 
 {% endblock %}

@@ -16,15 +16,11 @@
 		</tbody>
 		{% for id, recipe in recipes %}
 			<tr>
-				<td>
-					<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
-				</td>
-				<td>
-					<a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a>
-				</td>
+				<td><a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a></td>
+				<td><a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a></td>
 			</tr>
 		{% endfor %}
 	</table>
-
+	
 
 {% endblock %}

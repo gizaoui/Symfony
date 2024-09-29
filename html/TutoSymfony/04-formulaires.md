@@ -90,6 +90,34 @@ Le rendu est à présent le suivant :
 
 <br>
 
+La mise en page peut encore être améliorée en distinguant l'ensemble des champs.
+
+```html
+<h1>{{ recipeData.title }}</h1>
+{{ form_start(recipeForm) }}
+<div class="d-flex gap-2">
+	{{ form_row(recipeForm.title) }}
+	{{ form_row(recipeForm.slug) }}
+</div>
+<div class="d-flex flex-column">
+	{{ form_row(recipeForm.content) }}
+   {{ form_row(recipeForm.duration) }}
+</div>
+<div class="d-flex gap-2">
+	{{ form_row(recipeForm.createdAt) }}
+	{{ form_row(recipeForm.updatedAt) }}
+</div>
+{{ form_end(recipeForm) }}
+```
+
+<br>
+
+Ce permet le rendu suivant :
+
+![12](pic/12.png)
+
+
+
 L'édition d'une recette peut être facilité en modifiant la page web *TutoSymfony/templates/recipe/**index.html.twig***.
 
 ```html	<h1>Recipes</h1>
@@ -114,3 +142,4 @@ L'édition d'une recette peut être facilité en modifiant la page web *TutoSymf
 Il suffira de cliquer sur le bouton *Editer*
 
 ![10](pic/10.png)
+
