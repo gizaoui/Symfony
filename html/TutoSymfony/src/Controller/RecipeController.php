@@ -20,11 +20,20 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/recipe/{id}', name: 'recipe.show')]
+    #[Route('/recipe/show/{id}', name: 'recipe.show')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function show(Recipe $recipe): Response
     {
         return $this->render('recipe/show.html.twig', [
+            'recipe' => $recipe
+        ]);
+    }
+
+    #[Route('/recipe/edit/{id}', name: 'recipe.edit')]
+    // Récupération par la 'Primary key' dans l'instance '$recipe'
+    public function edit(Recipe $recipe): Response
+    {
+        return $this->render('recipe/edit.html.twig', [
             'recipe' => $recipe
         ]);
     }

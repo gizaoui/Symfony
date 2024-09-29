@@ -18,15 +18,21 @@
 	</style>
 
 	<div class="example-wrapper">
-
 		<h1>Recipes</h1>
-		<ul>
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Titre</th>
+					<th>Action</th>
+				</tr>
+			</tbody>
 			{% for id, recipe in recipes %}
-				<li>
-					<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
-				</li>
+				<tr>
+					<td><a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a></td>
+					<td><a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a></td>
+				</tr>
 			{% endfor %}
-		</ul>
-
+		</table>
+	
 	</div>
 {% endblock %}

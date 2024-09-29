@@ -1,7 +1,7 @@
 # Les formulaires
 
 Commençons par créer le formulaire contruit selon l'objet *Recipe*.<br>
-:warning: : Les données associées au formulaire seront gérées dans le *controller*.
+:warning: Les données associées au formulaire seront gérées dans le *controller*.
 
 Création du formulaire &nbsp;&#8640;&nbsp; `php bin/console make:form RecipeType`
 
