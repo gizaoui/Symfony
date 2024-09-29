@@ -465,11 +465,6 @@ Les traces renvoyées par le `dd($data)` sont les suivantes :
 
 <br>
 
-L'utlisation de la balise `{{ form(recipeForm) }}` dans page web impose la suppression des champs *createdAt* et *updatedAt* du formulaire.
-
-![22](pic/22.png)
-
-<br>
 
 Les évènements nous permettent de déporter la mise à jour des champs ***createdAt*** et ***updatedAt*** du *controller* vers le formulaire.
 
