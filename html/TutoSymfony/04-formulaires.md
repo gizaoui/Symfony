@@ -416,6 +416,8 @@ class RecipeType extends AbstractType {
 
 <br>
 
+Il ne reste que les quatre champs.
+
 ![20](pic/20.png)
 
 <br>
