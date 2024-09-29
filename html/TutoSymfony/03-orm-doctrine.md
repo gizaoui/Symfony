@@ -305,6 +305,21 @@ public function show(RecipeRepository $recipeRepository, int $id): Response {
 }
 ```
 
+<br>
+
+La récupération d'un enregitrement à travers une 'Entity' par une 'Primary key' peut être obtenu plus simplement. 
+
+```php
+#[Route('/recipe/{id}', name: 'recipe.show')]
+// Récupération par la 'Primary key' dans l'instance '$recipe'
+public function show(Recipe $recipe): Response {
+   return $this->render('recipe/show.html.twig', [
+      'recipe' => $recipe
+      ]);
+}
+```
+<br>
+
 Le contenu de la recette est affiché dans la page *TutoSymfony/templates/recipe/show.html.twig*.
 
 ```html

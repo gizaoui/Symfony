@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\Recipe;
 
 class RecipeController extends AbstractController
 {
@@ -19,12 +20,12 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/recipe/{slug}', name: 'recipe.show')]
-    public function show(RecipeRepository $recipeRepository, string $slug): Response
+    #[Route('/recipe/{id}', name: 'recipe.show')]
+    // Récupération par la 'Primary key' dans l'instance '$recipe'
+    public function show(Recipe $recipe): Response
     {
         return $this->render('recipe/show.html.twig', [
-            // Récupération par le 'slug'
-            'recipe' => $recipeRepository->findOneBy(['slug' => $slug])
+            'recipe' => $recipe
         ]);
     }
 }
