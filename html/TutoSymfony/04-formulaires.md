@@ -512,6 +512,7 @@ On peut supprimer les mise à jour des dates au niveau du *controller*.
 $recipe->setCreatedAt(new \DateTimeImmutable());
 $recipe->setUpdatedAt(new \DateTimeImmutable());
 ```
+
 <br>
 
 
