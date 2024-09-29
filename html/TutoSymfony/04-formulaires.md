@@ -268,3 +268,23 @@ L'affichage des messages messages seront traités dans le fichier *TutoSymfony/t
 {% endfor %}
 ```
 
+<br>
+
+Ce fichier sera inclus dans le fichier commun *TutoSymfony/templates/partials/**flash.html.twig***.
+
+```html
+<div class="container my-4">
+   <!-- Récupération du message 'Flash' -->
+	{% include 'partials/flash.html.twig' %}
+	<!-- Fichiers incluant des 'base.html.twig' -->
+	{% block body %}{% endblock %}
+</div>
+```
+
+<br>
+
+Ce qui permet d'obtenir le rendu suivant :
+
+![16](pic/16.png)
+
+
