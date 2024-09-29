@@ -65,7 +65,7 @@
 
 		<div
 			class="container my-4">
-			{{ dump(app.flashes) }}
+			{% include 'partials/flash.html.twig' %}
 			<!-- Fichiers incluant des 'base.html.twig' -->
 			{% block body %}{% endblock %}
 		</div>

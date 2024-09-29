@@ -255,3 +255,16 @@ Le message est récupéré dans l'objet *app.flashes* dans le fichier html commu
 Le message apparait à travers deux tableaux imbriqués.
 
 ![15](pic/15.png)
+
+<br>
+
+L'affichage des messages messages seront traités dans le fichier *TutoSymfony/templates/partials/**flash.html.twig*** de la façon suivante :
+
+```html
+{% for type, messages in app.flashes %}
+<div class="alert alert-{{ type }}">
+	{{ messages | join('. ') }}
+</div>
+{% endfor %}
+```
+
