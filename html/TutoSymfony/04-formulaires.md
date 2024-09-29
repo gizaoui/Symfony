@@ -177,8 +177,9 @@ Modifier le *controller* pour predre en charge la mise à jour.
 
 ```php
 #[Route('/recipe/edit/{id}', name: 'recipe.edit')]
-// Récupération par la 'Primary key' dans l'instance '$recipe'
-public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em): Response  {
+public function edit(Recipe $recipe, 
+                     Request $request, 
+                     EntityManagerInterface $em): Response  {
 
    // Création de l'instance du formulaire initialisée 
    // avec l'injection des données dans l'instance '$recipe'.
@@ -193,8 +194,8 @@ public function edit(Recipe $recipe, Request $request, EntityManagerInterface $e
    // Information obtenues par le 'handleRequest'
    // précédement appelé.
    if($form->isSubmitted() && $form->isValid()) {
+      // Mise à jour de la base de données.
       $em->flush();
-
       // Redirection sur la liste des recettes.
       return $this->redirectToRoute('recipe.index');
    }
