@@ -1,10 +1,5 @@
 # Les formulaires
 
-```php
-use RyanChandler\Color\Color;
-
-$color = new Color(255, 255, 255);
-```
 
 Commençons par créer le formulaire contruit selon l'objet *Recipe*.<br>
 :warning: Les données associées au formulaire seront gérées dans le *controller*.
