@@ -116,7 +116,7 @@ Ce permet le rendu suivant :
 
 ![12](pic/12.png)
 
-
+<br>
 
 L'édition d'une recette peut être facilité en modifiant la page web *TutoSymfony/templates/recipe/**index.html.twig***.
 
