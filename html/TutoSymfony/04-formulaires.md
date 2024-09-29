@@ -144,8 +144,9 @@ Il suffira de cliquer sur le bouton *Editer*
 
 ![10](pic/10.png)
 
+<br>
 
-## Mise à jour de la base de données
+## Mise à jour d'une recette
 
 Mettre à jour le formulaire en y ajoutant un bouton ***Submit*** et le typage des données
 
@@ -173,7 +174,7 @@ Le bouton a été ajouté et le titre modifié afin de tester la mise à jour
 
 <br>
 
-Modifier le *controller* pour predre en charge la mise à jour.
+Modifier le *controller* pour prendre en charge la mise à jour d'un enregistre.
 
 ```php
 #[Route('/recipe/edit/{id}', name: 'recipe.edit')]
@@ -200,6 +201,7 @@ public function edit(Recipe $recipe,
       return $this->redirectToRoute('recipe.index');
    }
 
+   // Page permettant la mise à jour d'une recette
    return $this->render('recipe/edit.html.twig', [
       'recipeData' => $recipe,
       'recipeForm' => $form
@@ -288,3 +290,59 @@ Ce qui permet d'obtenir le rendu suivant :
 ![16](pic/16.png)
 
 
+<br>
+
+## Création d'une nouvelle recette
+
+
+Modifier le *controller* pour prendre en charge l'ajout d'un nouvel enregistrement'.
+
+```php
+#[Route('/recipe/create', name: 'recipe.create')]
+// Récupération par la 'Primary key' dans l'instance '$recipe'
+public function create( Request $request, EntityManagerInterface $em): Response {
+
+   // Création d'un objet Recipe permetant 
+   // l'intégration d'un nouvel enregistrement.
+   $recipe = new Recipe();
+
+   // Création de l'instance du formulaire initialisée 
+   // avec l'injection des données dans l'instance '$recipe'.
+   // Vide dans le cas présent.
+   $form = $this->createForm(RecipeType::class, $recipe);
+
+   // Récupère les données mise à jour de la page web.
+   // pour mettre à jour celle de l'instance '$recipe'
+   $form->handleRequest($request);
+
+   // Information obtenues par le 'handleRequest'
+   // précédement appelé.
+   if($form->isSubmitted() && $form->isValid()) {
+      $em->persist($recipe); // Ce n'est plus une simple màj
+      $em->flush();
+      $this->addFlash('success', 'La recette a bien été créée');
+      return $this->redirectToRoute('recipe.index');
+   }
+
+   // Page permettant la saisie d'une nouvelle recette.
+   // Aucune données à transmettre.
+   return $this->render('recipe/create.html.twig', [
+      'recipeForm' => $form
+    ]);
+}
+```
+
+<br>
+
+La page html *TutoSymfony/templates/recipe/**create.html.twig*** permettra la création du nouvel enregistrement
+
+```html
+<h1>Création d'une nouvelle recette</h1>
+{{ form(recipeForm) }}
+```
+
+<br>
+
+Pour le moment les dates et le *slug* doivent être renseignées.
+
+![17](pic/17.png)

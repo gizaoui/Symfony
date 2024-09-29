@@ -141,9 +141,10 @@ La table a été créée avec les types de champ suivants :
 ```sql
 TRUNCATE TABLE Recipe;
 
+-- L'id doit commencer à 0
 INSERT INTO "recipe" ("id", "title", "slug", "content", "created_at", "updated_at", "duration")
 VALUES 
-(1, 'Pâte bonognaise', 'pate-bonognaise', 'Étape 1
+(0, 'Pâte bonognaise', 'pate-bonognaise', 'Étape 1
 Épluchez et émincez finement les oignons et l''ail.
 
 Étape 2
@@ -154,7 +155,7 @@ Incorporez les tomates pelées, les branches de thym et la feuille de laurier. S
 
 Étape 4
 Pendant ce temps, portez à ébullition un grand volume d’eau salée dans une casserole sur feu vif. Dès l’ébullition, plongez les spaghettis dans l’eau bouillante et laissez-les cuire en suivant les instructions du paquet ou jusqu’à ce qu’ils soient al dente. Lorsque les spaghettis sont cuits, égouttez-les dans une passoire et réservez-les au chaud.', '2024-09-28', '2024-09-28', '20'),
-(2, 'Riz contonais', 'pate-bonognaise', 'Étape 1
+(1, 'Riz contonais', 'pate-bonognaise', 'Étape 1
 
 Faire cuire le riz et le rincer à l''eau froide.
 

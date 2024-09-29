@@ -53,9 +53,46 @@ class RecipeController extends AbstractController
             return $this->redirectToRoute('recipe.index');
         }
 
+        // Page permettant la mise à jour d'une recette
         return $this->render('recipe/edit.html.twig', [
             'recipeData' => $recipe,
             'recipeForm' => $form
         ]);
     }
+
+
+    #[Route('/recipe/create', name: 'recipe.create')]
+    // Récupération par la 'Primary key' dans l'instance '$recipe'
+    public function create( Request $request, EntityManagerInterface $em): Response
+    {
+        // Création d'un objet Recipe permetant 
+        // l'intégration d'un nouvel enregistrement.
+        $recipe = new Recipe();
+
+        // Création de l'instance du formulaire initialisée 
+        // avec l'injection des données dans l'instance '$recipe'.
+        // Vide dans le cas présent.
+        $form = $this->createForm(RecipeType::class, $recipe);
+
+        // Récupère les données mise à jour de la page web.
+        // pour mettre à jour celle de l'instance '$recipe'
+        $form->handleRequest($request);
+
+        // Information obtenues par le 'handleRequest'
+        // précédement appelé.
+        if($form->isSubmitted() && $form->isValid()) {
+            $em->persist($recipe);
+            $em->flush();
+            $this->addFlash('success', 'La recette a bien été créée');
+            return $this->redirectToRoute('recipe.index');
+        }
+
+        // Page permettant la saisie d'une nouvelle recette.
+        // Aucune données à transmettre.
+        return $this->render('recipe/create.html.twig', [
+            'recipeForm' => $form
+        ]);
+    }
+
+
 }
