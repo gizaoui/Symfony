@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Recipe;
+use App\Form\RecipeType;
 
 class RecipeController extends AbstractController
 {
@@ -33,8 +34,13 @@ class RecipeController extends AbstractController
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function edit(Recipe $recipe): Response
     {
+        // Création de l'instance du formulaire initialisée 
+        // avec l'injection des données dans l'instance '$recipe'.
+        $form = $this->createForm(RecipeType::class, $recipe);
+
         return $this->render('recipe/edit.html.twig', [
-            'recipe' => $recipe
+            'recipeData' => $recipe,
+            'recipeForm' => $form
         ]);
     }
 }
