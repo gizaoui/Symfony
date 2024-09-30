@@ -51,3 +51,18 @@ Il est possible de forcer le message d'erreur à renvoyer.
 Les deux messages sont affichés.
 
 ![24](pic/24.png)
+
+<br>
+
+Il est possible de gérer le erreurs l'une après l'autre.
+
+```php
+'constraints' => new Sequentially( [ 
+   new Length(min:10),
+   new Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', message: 'Slug invalide')
+])
+```
+
+Les deux messages sont affichés.
+
+![25](pic/25.png)
