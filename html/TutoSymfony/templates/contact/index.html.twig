@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Nous contacter
+{% endblock %}
+
+{% block body %}
+
+	<div class="d-flex flex-column mb-5">
+		<h1>Nous contacter</h1>
+		<a href="http://localhost:8025/" target="_blank" class="link-secondary">Serveur virtuel smtp (Mailpit)</a>
+	</div>
+
+	{{ form_start(formContact) }}
+	<div class="row">
+		<div class="col-sm">
+			{{ form_row(formContact.name) }}
+		</div>
+		<div class="col-sm">
+            {{ form_row(formContact.email) }}
+        </div>
+	</div>
+	{{ form_end(formContact) }}
+
+{% endblock %}
