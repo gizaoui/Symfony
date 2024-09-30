@@ -14,9 +14,6 @@ use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\String\Slugger\AsciiSlugger;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\Regex;
-use Symfony\Component\Validator\Constraints\Sequentially;
 
 class RecipeType extends AbstractType
 {
@@ -24,14 +21,7 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre'])
-            ->add('slug', TextType::class, [
-                'label' => 'Path', 
-                'required' => false, 
-                'constraints' => new Sequentially( [ 
-                    new Length(min:10),
-                    new Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', message: 'Slug invalide')
-                    ])
-                ])
+            ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
             ->add('content', TextareaType::class, ['label' => 'Contenu'])
             ->add('duration', IntegerType::class)
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
