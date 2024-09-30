@@ -256,7 +256,7 @@ Le mot *spam* est correctement détecté.
 
 ## Groupe de validation
 
-Il est possible de filtrer les règles de validation à travers des groupes.
+Il est possible de désactiver des règles de validation à travers des groupes.
 
 <br>
 
