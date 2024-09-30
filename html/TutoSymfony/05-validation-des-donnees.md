@@ -266,9 +266,10 @@ Le groupe 'Default' permettra la prise en charge de toutes les contraites sauf c
 class RecipeType extends AbstractType {
    ...
    public function configureOptions(OptionsResolver $resolver): void  {
-        $resolver->setDefaults(['data_class' => Recipe::class, 
-            # Les groupes permettent le désactivation des règles de validation
-            'validation_groups' => ['Default']]);
+      $resolver->setDefaults([
+         'data_class' => Recipe::class, 
+         # Les groupes permettent le désactivation des règles de validation
+         'validation_groups' => ['Default']]);
     }
 }
 ```
@@ -291,3 +292,23 @@ La recette *"Pâte au spam"* est autorisé.
 ![28](pic/28.png)
 
 <br>
+
+
+Si on déclare le groupe 'Extrat' dans le *'validation_groups'*.
+
+```php
+class RecipeType extends AbstractType {
+   ...
+   public function configureOptions(OptionsResolver $resolver): void  {
+      $resolver->setDefaults([
+         'data_class' => Recipe::class, 
+         # Les groupes permettent le désactivation des règles de validation
+         'validation_groups' => ['Default', 'Extrat']]);
+    }
+}
+```
+
+La recette *"Pâte au spam"* est de nouveau interdite.
+
+![27](pic/27.png)
+

@@ -58,6 +58,7 @@ class RecipeType extends AbstractType
         $resolver->setDefaults([
             // Formulaire rattaché à l'entité 'Recipe'
             'data_class' => Recipe::class,
+            'validation_groups' => ['Default', 'Extrat']
         ]);
     }
 }
