@@ -14,6 +14,8 @@ use Symfony\Component\Form\Event\PreSubmitEvent;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\Validator\Constraints\Length;
+
 
 class RecipeType extends AbstractType
 {
@@ -21,7 +23,9 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre'])
-            ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
+            ->add('slug', TextType::class, ['label' => 'Path', 
+                                            'required' => false, 
+                                            'constraints' => new Length(min:10) ])
             ->add('content', TextareaType::class, ['label' => 'Contenu'])
             ->add('duration', IntegerType::class)
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
@@ -43,9 +47,6 @@ class RecipeType extends AbstractType
     function attachTimestamps(PostSubmitEvent $event): void
     {
         $data = $event->getData();
-
-        dd($data);
-
         if($data instanceof Recipe) {
             $data->setUpdatedAt(new \DateTimeImmutable());
             // Nouvelle enregistrement

@@ -151,6 +151,9 @@ Il suffira de cliquer sur le bouton *Editer*
 Mettre à jour le formulaire en y ajoutant un bouton ***Submit*** et le typage des données
 
 ```php
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+...
+
 class RecipeType extends AbstractType {
    public function buildForm(FormBuilderInterface $builder, array $options): void {
      $builder
@@ -430,6 +433,11 @@ Le mise à jour du champ *slug* doit être effectué à partir du champ *title* 
 Le champ *slug* étant automatiquement mis à jour, ajouter l'option `'required' => false`;
 
 ```php
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Event\PreSubmitEvent;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+...
+
 class RecipeType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void  {
       $builder
@@ -469,6 +477,10 @@ Les traces renvoyées par le `dd($data)` sont les suivantes :
 Les évènements nous permettent de déporter la mise à jour des champs ***createdAt*** et ***updatedAt*** du *controller* vers le formulaire.
 
 ```php
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Event\PostSubmitEvent;
+...
+
 class RecipeType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void  {
       $builder
