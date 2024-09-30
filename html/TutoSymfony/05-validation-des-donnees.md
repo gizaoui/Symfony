@@ -108,6 +108,6 @@ class Recipe {
 
 Empêche l'insertion de deux mêmes recettes.
 
-![25](pic/25.png)
+![26](pic/26.png)
 
 <br>
