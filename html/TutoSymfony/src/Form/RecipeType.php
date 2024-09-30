@@ -15,7 +15,7 @@ use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Component\Validator\Constraints\Length;
-
+use Symfony\Component\Validator\Constraints\Regex;
 
 class RecipeType extends AbstractType
 {
@@ -23,9 +23,14 @@ class RecipeType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre'])
-            ->add('slug', TextType::class, ['label' => 'Path', 
-                                            'required' => false, 
-                                            'constraints' => new Length(min:10) ])
+            ->add('slug', TextType::class, [
+                'label' => 'Path', 
+                'required' => false, 
+                'constraints' => [ 
+                    new Length(min:10),
+                    new Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', message: 'Slug invalide')
+                    ]
+                ])
             ->add('content', TextareaType::class, ['label' => 'Contenu'])
             ->add('duration', IntegerType::class)
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])

@@ -446,6 +446,8 @@ class RecipeType extends AbstractType {
          ->add('content', TextareaType::class, ['label' => 'Contenu'])
          ->add('duration', IntegerType::class)
          ->add('save', SubmitType::class, ['label' => 'Envoyer'])
+         // Le 'slug' est construit avec le 'title' déjà présent sur la page web
+         // et mise à jour sur la page web avant soumission => PRE_SUBMIT 
          ->addEventListener(FormEvents::PRE_SUBMIT, $this->factory->autoSlug('title'));
    }
 
@@ -490,6 +492,7 @@ class RecipeType extends AbstractType {
          ->add('duration', IntegerType::class)
          ->add('save', SubmitType::class, ['label' => 'Envoyer'])
          ->addEventListener(FormEvents::PRE_SUBMIT, $this->factory->autoSlug('title'))
+         // Les dates ne sont plus définies dans ce formulaire => PRE_SUBMIT 
          ->addEventListener(FormEvents::POST_SUBMIT, $this->attachTimestamps(...));
    }
 

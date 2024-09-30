@@ -14,3 +14,4 @@
 
 - [Documentation *Symfony*](https://symfony.com/doc/current/index.html)
 - [Documentation *twig*](https://twig.symfony.com/)
+- [I hate regex](https://ihateregex.io/)
