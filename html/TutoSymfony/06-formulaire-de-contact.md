@@ -68,7 +68,9 @@ EOF
 
 <br>
 
-## Data Transfert Object (DTO)
+## Email
+
+### Data Transfert Object (DTO)
 
 La struture des données gérée par formulaire sera définie par un DTO.
 
@@ -217,6 +219,78 @@ La page web initialisé.
 
 <br>
 
-Traces de l'objet '*$contact*'
+Traces de l'objet '*$contact*' du *controller*.
 
 ![30](pic/30.png)
+
+<br>
+
+#### Envoi d'email
+
+On souhaite envoyer l'email au format html en respectant un template *TutoSymfony/templates/contact/**template.html.twig***.
+
+```html
+<p>Une nouvelle demande de contact a été reçue</p>
+<ul>
+	<li>Nom : {{ data.name }}</li>
+	<li>Email : {{ data.email }}</li>
+</ul>
+<p>
+	<strong>Message:</strong><br />
+	{{ data.message | nl2br }}
+</p>
+```
+
+<br>
+
+Remplacer les traces `dd($contact)` :
+
+```php
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+
+class ContactController extends AbstractController
+{
+    #[Route('/contact', name: 'contact')]
+    public function index( Request $request, 
+                           MailerInterface $mailer): Response
+    {
+        $contact = new ContactDTO();
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+
+               $email = (new TemplatedEmail())
+               ->from($contact->email)
+               ->to('contact@demo.fr')
+               ->subject('Demande de contact')
+               ->htmlTemplate('contact/template.html.twig')
+               ->context(['data' => $contact]);
+
+               // Fournie par l'injection de dépendence 'MailerInterface'
+               $mailer->send($email);
+
+                $this->addFlash('success', 'L\'email a été envoyé');
+            } catch (\Exception $e) {
+                $this->addFlash('danger', 'Impossible d\'envoyer votre email');
+            } finally {
+                return $this->redirectToRoute('contact');
+            }
+        }
+
+        // TODO : A supprimer
+        // Permet de pré-remplir le formulaire
+        $contact->name = 'John Doe';
+        $contact->email = 'john@Doe.fr';
+        $contact->message = 'Super site !!!';
+        $form = $this->createForm(ContactType::class, $contact);
+
+        return $this->render('contact/index.html.twig', [
+            'formContact' => $form,
+        ]);
+    }
+```
+
+
