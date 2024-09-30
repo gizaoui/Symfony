@@ -111,3 +111,143 @@ Empêche l'insertion de deux mêmes recettes.
 ![26](pic/26.png)
 
 <br>
+
+### Contraites personnalisées
+
+Installer le *plugin* &nbsp;&#8640;&nbsp; `php bin/console make:validator`
+
+```bash
+ The name of the validator class (e.g. EnabledValidator):
+ > BanWordValidator
+
+ created: src/Validator/BanWordValidator.php
+ created: src/Validator/BanWord.php
+```
+
+La classe *BanWord* représente la contrainte. 
+
+```php
+#[\Attribute(\Attribute::TARGET_PROPERTY | \Attribute::TARGET_METHOD | \Attribute::IS_REPEATABLE)]
+class BanWord extends Constraint {
+    public string $message = 'The value "{{ value }}" is not valid.';
+}
+```
+<br>
+
+On souhaite ajouter une liste de mots banis.
+
+```php
+class BanWord extends Constraint {
+
+   // Création des attribus 'public' au niveau des constructeurs
+   // Le constructeur est redéfinit et doit se claquer sur le constructeur parent :
+   // function __construct(mixed $options = null, 
+   //                      ?array $groups = null, 
+   //                      mixed $payload = null) ...
+   public function __construct(
+      public string $message = 'The value "{{ banWord }}" is not valid.',
+      public array $banWords = ['spam', 'viagra'],
+      ?array $groups = null,
+      mixed $payload = null ) {
+         // ~ super() en Java
+         parent::__construct(null, $groups, $payload);
+   }
+}
+```
+
+<br>
+
+La classe *BanWordValidator* gère les erreurs.
+
+```php
+class BanWordValidator extends ConstraintValidator {
+    public function validate(mixed $value, Constraint $constraint): void {
+        /* @var BanWord $constraint */
+
+        // La contraite est valide. 
+        // le paramètre $value est une chaîne de caractère.
+        if (null === $value || '' === $value) {
+            return;
+        }
+
+        // Exécuté lors de la présence d'une erreur
+        $this->context->buildViolation($constraint->message)
+            ->setParameter('{{ value }}', $value)
+            ->addViolation();
+    }
+}
+```
+
+<br>
+
+Modifier la classe afin de traiter les mots banis.
+
+```php
+class BanWordValidator extends ConstraintValidator {
+
+   public function validate(mixed $value, Constraint $constraint): void {
+
+     // La contraite est valide. le paramètre $value est une chaîne de caractère.
+     if (null === $value || '' === $value) {
+         return;
+     }
+
+      // Les mots banis  ['spam', 'viagra'] seront déclaré en minuscule
+      $value = strtolower($value);
+
+      // Boucle définis dans l'attrubus de la classe 'BanWord' 
+      foreach ($constraint->banWords as $banWord) {
+         // Si la chaîne '$value' contient l'un des mots banis.
+         if (str_contains($value, $banWord)) {
+
+            // Exécuté lors de la présence d'une erreur
+            $this->context->buildViolation($constraint->message)
+               // L'attribue '$message' de la classe 'BanWord'
+               // attend à présent le paramètre '{{ banWord }}'
+               // et non {{ value }}
+               ->setParameter('{{ banWord }}', $banWord)
+               ->addViolation(); // Indique la présence d'un problème.
+         }
+     }
+   }
+}
+```
+
+<br>
+
+Il est à présent possible de remonter des messages personnalisés.
+
+<br>
+
+Le message peut soit être celui définit par défaut dans le contructeur de la classe *BanWord* &nbsp;&#8640;&nbsp;
+`public string $message = 'The value "{{ banWord }}" is not valid.'`
+
+```php
+use App\Validator\BanWord;
+...
+class Recipe {
+   ...
+   #[ORM\Column(length: 100)]
+   #[BanWord()]
+   private ?string $title = null;
+```
+
+<br>
+
+Soit être directement être surchargé.
+
+```php
+use App\Validator\BanWord;
+...
+class Recipe {
+   ...
+   #[ORM\Column(length: 100)]
+   #[BanWord('La valeur "{{ banWord }}" n\'est pas valide.')]
+   private ?string $title = null;
+```
+
+Le mot *spam* est correctement détecté.
+
+![27](pic/27.png)
+
+<br>
