@@ -63,6 +63,6 @@ Il est possible de gérer le erreurs l'une après l'autre.
 ])
 ```
 
-Les deux messages sont affichés.
+Seul la première erreur est affichée.
 
 ![25](pic/25.png)
