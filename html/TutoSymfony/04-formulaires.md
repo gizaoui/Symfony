@@ -148,7 +148,10 @@ Il suffira de cliquer sur le bouton *Editer*
 
 ## Mise à jour d'une recette
 
-Mettre à jour le formulaire en y ajoutant un bouton ***Submit*** et le typage des données
+Mettre à jour le formulaire en y ajoutant un bouton ***Submit*** et le typage des données.<br>
+Le paramètre `empty_data` permet l'initialisation des champs.
+Les champs texte sont initialisés à vide au lieu de *null*. Non autorisé dans les *Entity*.
+
 
 ```php
 use Symfony\Component\Form\Extension\Core\Type\TextType;
