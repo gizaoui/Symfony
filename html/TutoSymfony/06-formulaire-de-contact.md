@@ -195,7 +195,8 @@ Le formulaire est organisé de la façon suivante :
 ```html
 <div class="d-flex flex-column mb-5">
 	<h1>Nous contacter</h1>
-	<a href="http://localhost:8025/" target="_blank" class="link-secondary">Serveur virtuel smtp (Mailpit)</a>
+	<a href="http://localhost:8025/" target="_blank" 
+      class="link-secondary">Serveur virtuel smtp (Mailpit)</a>
 </div>
 
 {{ form_start(formContact) }}
@@ -213,3 +214,9 @@ Le formulaire est organisé de la façon suivante :
 La page web initialisé.
 
 ![29](pic/29.png)
+
+<br>
+
+Traces de l'objet '*$contact*'
+
+![30](pic/30.png)
