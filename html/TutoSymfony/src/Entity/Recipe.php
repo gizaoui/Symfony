@@ -20,7 +20,7 @@ class Recipe
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[BanWord('La valeur "{{ banWord }}" n\'est pas valide.')]
+    #[BanWord(message: 'La valeur "{{ banWord }}" n\'est pas valide.', groups: ['Extrat'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 100)]

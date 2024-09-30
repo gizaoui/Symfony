@@ -13,10 +13,12 @@ class BanWord extends Constraint {
     //                      ?array $groups = null, 
     //                      mixed $payload = null) ...
     public function __construct(
-       public string $message = 'The value "{{ banWord }}" is not valid.',
-       public array $banWords = ['spam', 'viagra'],
-       ?array $groups = null,
-       mixed $payload = null ) {
+        // Message affiché en cas d'erreurs
+        public string $message = 'The value "{{ banWord }}" is not valid.',
+        // 
+        public array $banWords = ['spam', 'viagra'],
+        ?array $groups = null,
+        mixed $payload = null ) {
           // ~ super() en Java
           parent::__construct(null, $groups, $payload);
     }

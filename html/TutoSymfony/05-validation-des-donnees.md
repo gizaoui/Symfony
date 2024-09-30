@@ -195,7 +195,9 @@ class BanWordValidator extends ConstraintValidator {
       // Les mots banis  ['spam', 'viagra'] seront déclaré en minuscule
       $value = strtolower($value);
 
-      // Boucle définis dans l'attrubus de la classe 'BanWord' 
+      // DEFINITION DE LA CONTRAINTE
+      // Boucle définis dans l'attribus de la classe 'BanWord'
+      // L'instance de la classe 'BanWord' est injecté dans la classe BanWordValidator.
       foreach ($constraint->banWords as $banWord) {
          // Si la chaîne '$value' contient l'un des mots banis.
          if (str_contains($value, $banWord)) {
@@ -219,7 +221,7 @@ Il est à présent possible de remonter des messages personnalisés.
 
 <br>
 
-Le message peut soit être celui définit par défaut dans le contructeur de la classe *BanWord* &nbsp;&#8640;&nbsp;
+Le message peut soit être celui définit par défaut dans le constructeur de la classe *BanWord* &nbsp;&#8640;&nbsp;
 `public string $message = 'The value "{{ banWord }}" is not valid.'`
 
 ```php
@@ -242,12 +244,50 @@ use App\Validator\BanWord;
 class Recipe {
    ...
    #[ORM\Column(length: 100)]
-   #[BanWord('La valeur "{{ banWord }}" n\'est pas valide.')]
+   #[BanWord(message: 'La valeur "{{ banWord }}" n\'est pas valide.')]
    private ?string $title = null;
 ```
 
 Le mot *spam* est correctement détecté.
 
 ![27](pic/27.png)
+
+<br>
+
+## Groupe de validation
+
+Il est possible de filtrer les règles de validation à travers des groupes.
+
+<br>
+
+Le groupe 'Default' permettra la prise en charge de toutes les contraites sauf celles définies avec un group différent.
+
+```php
+class RecipeType extends AbstractType {
+   ...
+   public function configureOptions(OptionsResolver $resolver): void  {
+        $resolver->setDefaults(['data_class' => Recipe::class, 
+            # Les groupes permettent le désactivation des règles de validation
+            'validation_groups' => ['Default']]);
+    }
+}
+```
+
+<br>
+
+Si j'associe la contrainte *BanWord* à un groupe non déclaré dans le *'validation_groups'* (*'Extrat'*), elle ne sera plus en mesure de filtrer le 'title'.
+
+```php
+class Recipe {
+   ... 
+   #[ORM\Column(length: 100)]
+   #[BanWord(  message: 'La valeur "{{ banWord }}" n\'est pas valide.', 
+               groups: ['Extrat'])]
+   private ?string $title = null;
+```
+
+La recette *"Pâte au spam"* est autorisé.
+
+![28](pic/28.png)
 
 <br>
