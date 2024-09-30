@@ -157,9 +157,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class RecipeType extends AbstractType {
    public function buildForm(FormBuilderInterface $builder, array $options): void {
      $builder
-         ->add('title', TextType::class, ['label' => 'Titre'])
-         ->add('slug', TextType::class, ['label' => 'Path'])
-         ->add('content', TextareaType::class, ['label' => 'Contenu'])
+         ->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
+         ->add('slug', TextType::class, ['label' => 'Path', 'empty_data' => ''])
+         ->add('content', TextareaType::class, ['label' => 'Contenu', 'empty_data' => ''])
          ->add('createdAt', DateTimeType::class )
          ->add('updatedAt', DateTimeType::class )
          ->add('duration', IntegerType::class)
@@ -391,9 +391,9 @@ On supprime les champs *createdAt* et *updatedAt* du formulaire afin de les supp
 class RecipeType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void  {
       $builder
-         ->add('title', TextType::class, ['label' => 'Titre'])
-         ->add('slug', TextType::class, ['label' => 'Path'])
-         ->add('content', TextareaType::class, ['label' => 'Contenu'])
+         ->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
+         ->add('slug', TextType::class, ['label' => 'Path', 'empty_data' => ''])
+         ->add('content', TextareaType::class, ['label' => 'Contenu', 'empty_data' => ''])
          ->add('duration', IntegerType::class)
          ->add('save', SubmitType::class, ['label' => 'Envoyer']);
    }
@@ -441,9 +441,9 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 class RecipeType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void  {
       $builder
-         ->add('title', TextType::class, ['label' => 'Titre'])
-         ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
-         ->add('content', TextareaType::class, ['label' => 'Contenu'])
+         ->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
+         ->add('slug', TextType::class, ['label' => 'Path', 'required' => false, 'empty_data' => ''])
+         ->add('content', TextareaType::class, ['label' => 'Contenu', 'empty_data' => ''])
          ->add('duration', IntegerType::class)
          ->add('save', SubmitType::class, ['label' => 'Envoyer'])
          // Le 'slug' est construit avec le 'title' déjà présent sur la page web
@@ -486,9 +486,9 @@ use Symfony\Component\Form\Event\PostSubmitEvent;
 class RecipeType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options): void  {
       $builder
-         ->add('title', TextType::class, ['label' => 'Titre'])
-         ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
-         ->add('content', TextareaType::class, ['label' => 'Contenu'])
+         ->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
+         ->add('slug', TextType::class, ['label' => 'Path', 'required' => false, 'empty_data' => ''])
+         ->add('content', TextareaType::class, ['label' => 'Contenu', 'empty_data' => ''])
          ->add('duration', IntegerType::class)
          ->add('save', SubmitType::class, ['label' => 'Envoyer'])
          ->addEventListener(FormEvents::PRE_SUBMIT, $this->factory->autoSlug('title'))

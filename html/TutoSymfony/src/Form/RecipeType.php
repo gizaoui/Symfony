@@ -20,9 +20,9 @@ class RecipeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'Titre'])
-            ->add('slug', TextType::class, ['label' => 'Path', 'required' => false])
-            ->add('content', TextareaType::class, ['label' => 'Contenu'])
+            ->add('title', TextType::class, ['label' => 'Titre', 'empty_data' => ''])
+            ->add('slug', TextType::class, ['label' => 'Path', 'required' => false, 'empty_data' => ''])
+            ->add('content', TextareaType::class, ['label' => 'Contenu', 'empty_data' => ''])
             ->add('duration', IntegerType::class)
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
             ->addEventListener(FormEvents::PRE_SUBMIT, $this->autoSlug(...))
@@ -43,6 +43,7 @@ class RecipeType extends AbstractType
     function attachTimestamps(PostSubmitEvent $event): void
     {
         $data = $event->getData();
+
         if($data instanceof Recipe) {
             $data->setUpdatedAt(new \DateTimeImmutable());
             // Nouvelle enregistrement
@@ -58,7 +59,6 @@ class RecipeType extends AbstractType
         $resolver->setDefaults([
             // Formulaire rattaché à l'entité 'Recipe'
             'data_class' => Recipe::class,
-            'validation_groups' => ['Default', 'Extrat']
         ]);
     }
 }
