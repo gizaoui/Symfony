@@ -37,7 +37,7 @@ class ContactController extends AbstractController
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'Impossible d\'envoyer votre email');
             } finally {
-                return $this->redirectToRoute('contact');
+                return $this->redirectToRoute('recipe.index');
             }
         }
 
