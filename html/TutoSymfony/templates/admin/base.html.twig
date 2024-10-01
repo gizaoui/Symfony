@@ -23,7 +23,6 @@
 	<body>
 		<nav class="navbar navbar-light mb-2 navbar-expand-sm" style="background-color: #f7e3fd;">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Mon site</a>
 				<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#monsite" aria-controls="monsite" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -33,36 +32,12 @@
 							<a class="nav-link {{ app.current_route=='home'?'active':'' }}" href="{{ path("home") }}">Acceuil</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link {{ app.current_route starts with 'contact'?'active':'' }}" href="{{ path("contact") }}">Contact</a>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<!-- <li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Connexion
-							</a>
-							<div class="dropdown-menu dropdown-menu-end" aria-labelledby="alignedDropdown" aria-labelledby="navbarScrollingDropdown" id="formLogin">
-								<form class="">
-									<div class="form-floating mb-3">
-										<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-										<label for="floatingInput">Email address</label>
-									</div>
-									<div class="form-floating">
-										<input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-										<label for="floatingPassword">Password</label>
-									</div>
-									<button type="submit" id="btnLogin" class="btn btn-success btn-sm mt-2">Login</button>
-								</form>
-							</div>
-						</li> -->
-						<li class="nav-item">
-							<a class="nav-link {{ app.current_route starts with 'admin.recipe.'?'active':'' }}" href="{{ path("admin.recipe.index") }}">Admin</a>
+							<a class="nav-link {{ app.current_route starts with 'admin.recipe.'?'active':'' }}" href="{{ path("admin.recipe.index") }}">Recipe</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-
 		<div
 			class="container my-4">
 			{% include 'partials/flash.html.twig' %}

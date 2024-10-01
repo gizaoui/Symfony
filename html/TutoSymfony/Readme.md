@@ -9,7 +9,7 @@
 - [Les formulaires](https://github.com/gizaoui/Symfony/blob/main/html/TutoSymfony/04-formulaires.md)
 - [Validation des données](https://github.com/gizaoui/Symfony/blob/main/html/TutoSymfony/05-validation-des-donnees.md)
 - [Formulaire de contact](https://github.com/gizaoui/Symfony/blob/main/html/TutoSymfony/06-formulaire-de-contact.md)
-
+- [Catégorie](https://github.com/gizaoui/Symfony/blob/main/html/TutoSymfony/07-categorie.md)
 
 ## Documentation
 

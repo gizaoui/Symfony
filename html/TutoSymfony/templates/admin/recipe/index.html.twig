@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Hello RecipeController!
 {% endblock %}
@@ -9,7 +9,7 @@
 	<h1 class="mb-3">Recipes</h1>
 
 	<p class="mb-1">
-		<a class="btn btn-primary btn-sm" href="{{ path("recipe.create") }}">Nouvelle recette</a>
+		<a class="btn btn-primary btn-sm" href="{{ path("admin.recipe.create") }}">Nouvelle recette</a>
 	</p>
 
 	<table class="table">
@@ -26,9 +26,9 @@
 				</td>
 				<td>
 					<div class="d-flex gap-1">
-						<a class="btn btn-primary btn-sm" href="{{ path("recipe.edit", {id: recipe.id }) }}">Editer</a>
+						<a class="btn btn-primary btn-sm" href="{{ path("admin.recipe.edit", {id: recipe.id }) }}">Editer</a>
 						<form
-							action="{{ path("recipe.delete", {id: recipe.id }) }}" method="post">
+							action="{{ path("admin.recipe.delete", {id: recipe.id }) }}" method="post">
 							<input type="hidden" name="_method" value="DELETE">
 							<button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
 						</form>

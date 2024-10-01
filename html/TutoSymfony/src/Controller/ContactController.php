@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ContactController extends AbstractController
 {
@@ -37,16 +38,16 @@ class ContactController extends AbstractController
             } catch (\Exception $e) {
                 $this->addFlash('danger', 'Impossible d\'envoyer votre email');
             } finally {
-                return $this->redirectToRoute('recipe.index');
+                return $this->redirectToRoute('contact');
             }
         }
 
+        
         // TODO : A supprimer
         // Permet de pré-remplir le formulaire
         $contact->name = 'John Doe';
         $contact->email = 'john@Doe.fr';
         $contact->message = 'Super site !!!';
-        $contact->service = 'Marketing';
         $form = $this->createForm(ContactType::class, $contact);
 
         return $this->render('contact/index.html.twig', [

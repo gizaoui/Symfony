@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,25 +13,26 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class RecipeController extends AbstractController
 {
-    #[Route('/recipe', name: 'recipe.index')]
+
+    #[Route('/admin/recipe', name: 'admin.recipe.index')]
     public function index(RecipeRepository $recipeRepository): Response
     {
         $recipes = $recipeRepository->findAll();
-        return $this->render('recipe/index.html.twig', [
+        return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,
         ]);
     }
 
-    #[Route('/recipe/show/{id}', name: 'recipe.show')]
+    #[Route('/admin/recipe/show/{id}', name: 'admin.recipe.show')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function show(Recipe $recipe): Response
     {
-        return $this->render('recipe/show.html.twig', [
+        return $this->render('admin/recipe/show.html.twig', [
             'recipe' => $recipe
         ]);
     }
 
-    #[Route('/recipe/edit/{id}', name: 'recipe.edit')]
+    #[Route('/admin/recipe/edit/{id}', name: 'admin.recipe.edit')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em): Response
     {
@@ -51,18 +52,18 @@ class RecipeController extends AbstractController
             // $recipe->setUpdatedAt(new \DateTimeImmutable());
             $em->flush();
             $this->addFlash('success', 'La recette a bien été modifiée');
-            return $this->redirectToRoute('recipe.index');
+            return $this->redirectToRoute('admin.recipe.index');
         }
 
         // Page permettant la mise à jour d'une recette
-        return $this->render('recipe/edit.html.twig', [
+        return $this->render('admin/recipe/edit.html.twig', [
             'recipeData' => $recipe,
             'recipeForm' => $form
         ]);
     }
 
 
-    #[Route('/recipe/create', name: 'recipe.create')]
+    #[Route('/admin/recipe/create', name: 'admin.recipe.create')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function create(Request $request, EntityManagerInterface $em): Response
     {
@@ -87,23 +88,23 @@ class RecipeController extends AbstractController
             $em->persist($recipe);
             $em->flush();
             $this->addFlash('success', 'La recette a bien été créée');
-            return $this->redirectToRoute('recipe.index');
+            return $this->redirectToRoute('admin.recipe.index');
         }
 
         // Page permettant la saisie d'une nouvelle recette.
         // Aucune données à transmettre.
-        return $this->render('recipe/create.html.twig', [
+        return $this->render('admin/recipe/create.html.twig', [
             'recipeForm' => $form
         ]);
     }
 
-    #[Route('/recipe/delete/{id}', name: 'recipe.delete', methods: ['DELETE'])]
+    #[Route('/admin/recipe/delete/{id}', name: 'admin.recipe.delete', methods: ['DELETE'])]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function delete(Recipe $recipe, EntityManagerInterface $em): Response
     {
         $em->remove($recipe);
         $em->flush();
         $this->addFlash('success', 'La recette a été supprimée');
-        return $this->redirectToRoute('recipe.index');
+        return $this->redirectToRoute('admin.recipe.index');
     }
 }

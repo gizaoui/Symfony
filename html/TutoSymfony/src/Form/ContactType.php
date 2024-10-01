@@ -35,4 +35,5 @@ class ContactType extends AbstractType
             'data_class' => ContactDTO::class,
         ]);
     }
+    
 }
