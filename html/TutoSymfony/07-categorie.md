@@ -121,4 +121,4 @@ Page web de présentation  :
 
 Page web d'administration :
 
-![32](pic/32.png)
+![33](pic/33.png)
