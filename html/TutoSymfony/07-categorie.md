@@ -15,6 +15,38 @@ Mettre à jour les *path* du fichier *TutoSymfony/src/Controller/Admin/**RecipeC
 
 <br>
 
+Le re-définition des routes peut-être facilitées par la notation.
+
+```php
+#[Route('/admin/recipe/', name: 'admin.recipe.')]
+class RecipeController extends AbstractController {
+   #[Route('', name: 'index')]
+   ...
+   #[Route('show/{id}', name: 'show')]
+   ...
+   #[Route('edit/{id}', name: 'edit')]
+   ...
+   #[Route('create', name: 'create')]
+   ...
+   #[Route('delete/{id}', name: 'delete', methods: ['DELETE'])]
+...
+```
+
+<br>
+
+Vérifier l'étatat des routes  &nbsp;&#8640;&nbsp; `php bin/console debug:route | grep admin`
+
+```bash
+admin.recipe.index         ANY      ANY      ANY    /admin/recipe/                     
+admin.recipe.show          ANY      ANY      ANY    /admin/recipe/show/{id}            
+admin.recipe.edit          ANY      ANY      ANY    /admin/recipe/edit/{id}            
+admin.recipe.create        ANY      ANY      ANY    /admin/recipe/create               
+admin.recipe.delete        DELETE   ANY      ANY    /admin/recipe/delete/{id} 
+```
+
+
+<br>
+
 Dupliquer le fichier *base.html.twig* sous *TutoSymfony/templates/admin/**base.html.twig*** et mettre à jour la *navbar*.
 
 ```html

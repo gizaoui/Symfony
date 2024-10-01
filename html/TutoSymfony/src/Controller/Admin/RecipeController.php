@@ -11,10 +11,10 @@ use App\Entity\Recipe;
 use App\Form\RecipeType;
 use Doctrine\ORM\EntityManagerInterface;
 
+#[Route('/admin/recipe/', name: 'admin.recipe.')]
 class RecipeController extends AbstractController
 {
-
-    #[Route('/admin/recipe', name: 'admin.recipe.index')]
+    #[Route('', name: 'index')]
     public function index(RecipeRepository $recipeRepository): Response
     {
         $recipes = $recipeRepository->findAll();
@@ -23,7 +23,7 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/recipe/show/{id}', name: 'admin.recipe.show')]
+    #[Route('show/{id}', name: 'show')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function show(Recipe $recipe): Response
     {
@@ -32,7 +32,7 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/recipe/edit/{id}', name: 'admin.recipe.edit')]
+    #[Route('edit/{id}', name: 'edit')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function edit(Recipe $recipe, Request $request, EntityManagerInterface $em): Response
     {
@@ -63,7 +63,7 @@ class RecipeController extends AbstractController
     }
 
 
-    #[Route('/admin/recipe/create', name: 'admin.recipe.create')]
+    #[Route('create', name: 'create')]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function create(Request $request, EntityManagerInterface $em): Response
     {
@@ -98,7 +98,7 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/recipe/delete/{id}', name: 'admin.recipe.delete', methods: ['DELETE'])]
+    #[Route('delete/{id}', name: 'delete', methods: ['DELETE'])]
     // Récupération par la 'Primary key' dans l'instance '$recipe'
     public function delete(Recipe $recipe, EntityManagerInterface $em): Response
     {
