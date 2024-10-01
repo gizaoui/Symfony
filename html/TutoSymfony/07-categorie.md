@@ -79,7 +79,7 @@ Mettre à jour les liens et l'*extends* du fichier *TutoSymfony/templates/admin/
 		{% for id, recipe in recipes %}
 			<tr>
 				<td>
-					<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
+					<a href="{{ url('admin.recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
 				</td>
 				<td>
 					<div class="d-flex gap-1">
@@ -100,6 +100,12 @@ Mettre à jour les liens et l'*extends* du fichier *TutoSymfony/templates/admin/
 <br>
 
 Mettre à jour les *extends* des fichiers (`{% extends 'admin/base.html.twig' %}`) :
+
 - *TutoSymfony/templates/admin/recipe/**create.html.twig***
 - *TutoSymfony/templates/admin/recipe/**edit.html.twig***
 - *TutoSymfony/templates/admin/recipe/**show.html.twig***
+
+<br>
+
+: warning : Supprimer le répertoire *TutoSymfony/templates/**recipe*** après avoir vérifié les redirections.
+: warning : Supprimer le fichier *TutoSymfony/src/Controller/**RecipeController.php*** après avoir vérifié les redirections.

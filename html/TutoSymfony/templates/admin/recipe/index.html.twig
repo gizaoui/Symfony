@@ -5,7 +5,6 @@
 
 {% block body %}
 
-
 	<h1 class="mb-3">Recipes</h1>
 
 	<p class="mb-1">
@@ -22,7 +21,7 @@
 		{% for id, recipe in recipes %}
 			<tr>
 				<td>
-					<a href="{{ url('recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
+					<a href="{{ url('admin.recipe.show', { id: recipe.id }) }}">{{ recipe.title }}</a>
 				</td>
 				<td>
 					<div class="d-flex gap-1">
@@ -37,6 +36,4 @@
 			</tr>
 		{% endfor %}
 	</table>
-
-
 {% endblock %}
