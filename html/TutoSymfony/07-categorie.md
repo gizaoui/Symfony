@@ -107,5 +107,7 @@ Mettre à jour les *extends* des fichiers (`{% extends 'admin/base.html.twig' %}
 
 <br>
 
-: warning : Supprimer le répertoire *TutoSymfony/templates/**recipe*** après avoir vérifié les redirections.
-: warning : Supprimer le fichier *TutoSymfony/src/Controller/**RecipeController.php*** après avoir vérifié les redirections.
+:warning: Supprimer le répertoire *TutoSymfony/templates/**recipe*** après avoir vérifié les redirections.
+:warning: Supprimer le fichier *TutoSymfony/src/Controller/**RecipeController.php*** après avoir vérifié les redirections.
+
+
