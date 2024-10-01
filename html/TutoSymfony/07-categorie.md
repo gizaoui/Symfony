@@ -111,3 +111,14 @@ Mettre à jour les *extends* des fichiers (`{% extends 'admin/base.html.twig' %}
 - :warning: Supprimer le fichier *TutoSymfony/src/Controller/**RecipeController.php*** après avoir vérifié les redirections.
 
 
+<br>
+
+Page web de présentation  :
+
+![32](pic/32.png)
+
+<br>
+
+Page web d'administration :
+
+![32](pic/32.png)
