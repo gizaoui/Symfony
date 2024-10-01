@@ -26,7 +26,7 @@ class ContactController extends AbstractController
 
                 $email = (new TemplatedEmail())
                 ->from($contact->email)
-                ->to('contact@demo.fr')
+                ->to($contact->service)
                 ->subject('Demande de contact')
                 ->htmlTemplate('contact/template.html.twig')
                 ->context(['data' => $contact]);
@@ -46,6 +46,7 @@ class ContactController extends AbstractController
         $contact->name = 'John Doe';
         $contact->email = 'john@Doe.fr';
         $contact->message = 'Super site !!!';
+        $contact->service = 'Marketing';
         $form = $this->createForm(ContactType::class, $contact);
 
         return $this->render('contact/index.html.twig', [

@@ -72,7 +72,7 @@ EOF
 
 ### Data Transfert Object (DTO)
 
-La struture des données gérée par formulaire sera définie par un DTO.
+La struture des données gérée par formulaire sera définie par le DTO *TutoSymfony/src/DTO/*ContactDTO.php**.
 
 ```php
 namespace App\DTO;
@@ -91,9 +91,6 @@ class ContactDTO {
    #[Assert\NotBlank()]
    #[Assert\Length(min: 3, max: 70)]
    public string $message = '';
-
-   #[Assert\NotBlank()]
-   public string $service = '';
 }
 ```
 
@@ -243,7 +240,7 @@ On souhaite envoyer l'email au format html en respectant un template *TutoSymfon
 
 <br>
 
-Remplacer les traces `dd($contact)` :
+Remplacer les traces `dd($contact)` par le [*mailer*](https://symfony.com/doc/current/mailer.html#creating-sending-messages).
 
 ```php
 use Symfony\Component\Mailer\MailerInterface;
@@ -293,4 +290,71 @@ class ContactController extends AbstractController
     }
 ```
 
+<br>
 
+Vérifier le présence de l'email dans [*Mailpit*](http://localhost:8025/).
+
+
+####  Gestion des destinataires
+
+On souhaite pourvoir sélectionner un destinataire dans un menu déroulant.
+
+Ajoutons un nouvel attribus au DTO *TutoSymfony/src/DTO/*ContactDTO.php** pour pouvoir sélectionner un service.
+
+```php
+class ContactDTO {
+   ...
+   #[Assert\NotBlank()]
+   public string $service = '';
+}
+```
+
+Il faut sélectionner un [text-fields](https://symfony.com/doc/current/reference/forms/types.html#text-fields) adapté dans notre formulaire.
+Le choix se portera sur le contrôle `ChoiceType`.
+
+Le formulaire de contact est modifié de la façon suivante :
+
+```php
+class ContactType extends AbstractType {
+    public function buildForm(FormBuilderInterface $builder, array $options): void  {
+        $builder
+            ...
+            // Menu déroulant des destinataires
+            ->add('service', ChoiceType::class, [
+                'choices'  => [
+                    'Compta' => 'compta@demo.fr', // Séléctionné par défaut
+                    'Support' => 'support@demo.fr',
+                    'Marketing' => 'marketing@demo.fr',
+                ]])
+            ...
+    }
+```
+
+
+<br>
+
+Le formulaire sera organisé de la façon suivante :
+
+```html
+{{ form_start(formContact) }}
+<div class="row">
+	<div class="col-sm">
+		{{ form_row(formContact.name) }}
+	</div>
+	<div class="col-sm">
+      {{ form_row(formContact.email) }}
+   </div>
+   	<div class="col-sm">
+      {{ form_row(formContact.service) }}
+   </div>
+</div>
+{{ form_end(formContact) }}
+```
+
+<br>
+
+La page web se présente à présent de la façon suivante :
+
+![31](pic/31.png)
+
+<br>
