@@ -23,7 +23,7 @@ export POSTGRES_URL="localhost"
 
 ## Model
 
-Création du *model* &nbsp;&#8640;&nbsp; `php bin/console make:entity Recipe`
+Création du l'entité &nbsp;&#8640;&nbsp; `php bin/console make:entity Recipe`
 
 ###  Création des champs
 

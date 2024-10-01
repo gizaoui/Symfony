@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ContactController extends AbstractController
 {
