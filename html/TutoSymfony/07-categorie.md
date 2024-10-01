@@ -34,7 +34,7 @@ class RecipeController extends AbstractController {
 
 <br>
 
-Vérifier l'étatat des routes  &nbsp;&#8640;&nbsp; `php bin/console debug:route | grep admin`
+Vérifier l'état des routes  &nbsp;&#8640;&nbsp; `php bin/console debug:route | grep admin`
 
 ```bash
 admin.recipe.index         ANY      ANY      ANY    /admin/recipe/                     
@@ -154,3 +154,138 @@ Page web de présentation  :
 Page web d'administration :
 
 ![33](pic/33.png)
+
+
+## Catégorie
+
+On souhaite classer nos recettes par catégorie.
+
+- Création d'un *controller* des categories  &nbsp;&#8640;&nbsp; `php bin/console make:controller admin\\CategoryController`
+
+
+*TutoSymfony/src/Controller/Admin/**CategoryController.php*** sera calqué<br>
+sur *TutoSymfony/src/Controller/Admin/**RecipeController.php***
+
+```php
+#[Route('/admin/category/', name: 'admin.category.')]
+class CategoryController extends AbstractController {
+
+    #[Route('', name: 'index')]
+    public function index(): Response {
+        return $this->render('admin/category/index.html.twig', [
+            'controller_name' => 'CategoryController',
+        ]);
+    }
+
+    #[Route('edit/{id}', name: 'edit')]
+    public function edit() {
+    }
+
+    #[Route('create', name: 'create')]
+    public function create() {
+    }
+
+    #[Route('delete/{id}', name: 'delete', methods: ['DELETE'])]
+    public function delete() {
+    }
+}
+```
+
+<br>
+
+Vérifier l'état des routes  &nbsp;&#8640;&nbsp; `php bin/console debug:route | grep category`
+
+```bash
+admin.category.index       ANY      ANY      ANY    /admin/category/                   
+admin.category.edit        ANY      ANY      ANY    /admin/category/edit/{id}          
+admin.category.create      ANY      ANY      ANY    /admin/category/create             
+admin.category.delete      DELETE   ANY      ANY    /admin/category/delete/{id}    
+```
+
+<br>
+
+## Model
+
+Création du l'entité &nbsp;&#8640;&nbsp; `php bin/console make:entity Category`
+
+```bash
+ created: src/Entity/Category.php
+ created: src/Repository/CategoryRepository.php
+```
+
+#### **name**
+
+```bash
+ New property name (press <return> to stop adding fields):
+ > name
+
+ Field type (enter ? to see all types) [string]:
+ > 
+
+ Field length [255]:
+ > 70
+
+ Can this field be null in the database (nullable) (yes/no) [no]:
+ > 
+```
+
+#### **slug**
+
+```bash
+ New property name (press <return> to stop adding fields):
+ > slug
+
+ Field type (enter ? to see all types) [string]:
+ > 
+
+ Field length [255]:
+ > 70
+
+ Can this field be null in the database (nullable) (yes/no) [no]:
+ > 
+```
+
+#### **createdAt**
+
+```bash
+ New property name (press <return> to stop adding fields):
+ > createdAt
+
+ Field type (enter ? to see all types) [datetime_immutable]:
+ > 
+
+ Can this field be null in the database (nullable) (yes/no) [no]:
+ > 
+```
+
+#### **updatedAt**
+
+```bash
+ New property name (press <return> to stop adding fields):
+ > updatedAt
+
+ Field type (enter ? to see all types) [datetime_immutable]:
+ > 
+
+ Can this field be null in the database (nullable) (yes/no) [no]:
+ > 
+```
+
+<br>
+
+## Création des tables
+
+#### Script de création
+
+- Fichiers de création des tables &nbsp;&#8640;&nbsp; `php bin/console make:migration`
+
+Le script *TutoSymfony/migrations/**VersionYYYYMMDDXXXXXX.php*** doit être vérifié avant sont exécution.
+
+#### Création sous *Postgres*
+
+- Création des tables sous *ProsgreSQL* &nbsp;&#8640;&nbsp; `php bin/console doctrine:migration:migrate --no-interaction`
+
+
+La table a été créée avec les types de champ suivants :
+
+![03](pic/34.png)
